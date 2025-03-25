@@ -1,0 +1,62 @@
+.vm-collapse {
+  --vm-collapse-border-color: var(--vm-border-color-light);
+  --vm-collapse-header-height: 48px;
+  --vm-collapse-header-bg-color: var(--vm-fill-color-blank);
+  --vm-collapse-header-text-color: var(--vm-text-color-primary);
+  --vm-collapse-header-font-size: 13px;
+  --vm-collapse-content-bg-color: var(--vm-fill-color-blank);
+  --vm-collapse-content-font-size: 13px;
+  --vm-collapse-content-text-color: var(--vm-text-color-primary);
+  --vm-collapse-disabled-text-color: var(--vm-disabled-text-color);
+  --vm-collapse-disabled-border-color: var(--vm-border-color-lighter);
+  border-top: 1px solid var(--vm-collapse-border-color);
+  border-bottom: 1px solid var(--vm-collapse-border-color);
+}
+.vm-collapse-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--vm-collapse-header-height);
+  line-height: var(--vm-collapse-header-height);
+  background-color: var(--vm-collapse-header-bg-color);
+  color: var(--vm-collapse-header-text-color);
+  cursor: pointer;
+  font-size: var(--vm-collapse-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--vm-transition-duration);
+  outline: none;
+  border-bottom: 1px solid var(--vm-collapse-border-color);
+
+  &.is-disabled {
+    color: var(--vm-collapse-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+  }
+  &.is-active {
+    border-bottom-color: transparent;
+    .header-angle {
+      transform: rotate(90deg);
+    }
+  }
+  /* .header-angle {
+    transition: transform var(--vm-transition-duration);
+  } */
+}
+
+.vm-collapse-item__content {
+  will-change: height;
+  background-color: var(--vm-collapse-content-bg-color);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: var(--vm-collapse-content-font-size);
+  color: var(--vm-collapse-content-text-color);
+  border-bottom: 1px solid var(--vm-collapse-border-color);
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+/* TODO:血泪教训 没加逗号，css中注释不能使用//，否则会导致代码出错,语法动画没生效 */
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: height 0.3s ease-in-out;
+}
