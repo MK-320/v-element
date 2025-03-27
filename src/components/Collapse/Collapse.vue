@@ -21,7 +21,7 @@ watch(
   () => {
     activeNames.value = props.modelValue
   },
-)    
+)
 
 if (props.accordion && activeNames.value.length > 1) {
   console.log('手风琴至少有一个面板')
@@ -52,4 +52,4 @@ provide(collapseContextKey, {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

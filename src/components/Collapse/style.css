@@ -35,12 +35,12 @@
   &.is-active {
     border-bottom-color: transparent;
     .header-angle {
-      transform: rotate(90deg);
+      transform: rotate(90deg); /*当图标被点击的时候，旋转九十度*/
     }
   }
-  /* .header-angle {
+  .header-angle {
     transition: transform var(--vm-transition-duration);
-  } */
+  }
 }
 
 .vm-collapse-item__content {
@@ -58,5 +58,5 @@
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: height 0.3s ease-in-out;
+  transition: height var(--vm-transition-duration);
 }

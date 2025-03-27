@@ -1,0 +1,16 @@
+.vm-icon {
+  --vm-icon-color: inherit; /* 默认继承父组件，后面会被覆盖掉 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--vm-icon-color);
+  font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+  .vm-icon--$(val) {
+    --vm-icon-color: var(--vm-color-$(val));
+  }
+}

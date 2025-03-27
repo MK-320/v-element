@@ -1,0 +1,66 @@
+.vm-alert {
+  --vm-alert-padding: 8px 16px;
+  --vm-alert-border-radius-base: var(--vm-border-radius-base);
+  --vm-alert-bg-color: var(--vm-color-white);
+  --vm-alert-content-font-size: 13px;
+  --vm-alert-icon-size: 16px;
+  --vm-alert-text-color: var(--vm-text-color-primary);
+  --vm-alert-top-margin: 20px;
+}
+.vm-alert {
+  padding: var(--vm-alert-padding);
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: var(--vm-alert-border-radius-base);
+  position: relative;
+  background-color: var(--vm-alert-bg-color);
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--vm-transition-duration);
+  margin-top: var(--vm-alert-top-margin);
+  .vm-alert__content {
+    font-size: var(--vm-alert-content-font-size);
+    color: var(--vm-alert-text-color);
+    line-height: 18px;
+    vertical-align: text-top;
+  }
+  .vm-alert__close {
+    font-size: var(--el-alert-close-font-size);
+    opacity: 1;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+    .vm-icon {
+      vertical-align: top;
+    }
+  }
+  &.vm-alert__light {
+    .vm-alert__close {
+      color: var(--vm-text-color-placeholder);
+    }
+  }
+  &.vm-alert__dark {
+    .vm-alert__close {
+      color: var(--vm-color-white);
+    }
+  }
+}
+
+.vm-alert-fade-enter-from,
+.vm-alert-fade-leave-to {
+  opacity: 0;
+}
+
+@each $val in success, warning, info, danger, primary {
+  .vm-alert__$(val).vm-alert__light {
+    --vm-alert-text-color: var(--vm-color-$(val));
+    --vm-alert-bg-color: var(--vm-color-$(val)-light-9);
+  }
+  .vm-alert__$(val).vm-alert__dark {
+    --vm-alert-text-color: var(--vm-color-white);
+    --vm-alert-bg-color: var(--vm-color-$(val));
+  }
+}

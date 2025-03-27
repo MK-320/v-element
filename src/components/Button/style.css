@@ -81,6 +81,7 @@
     background-color: var(--vm-button-disabled-bg-color);
     border-color: var(--vm-button-disabled-border-color);
   }
+  /* 这里是通配符匹配，如果class是包含vm-icon并且后面是span的时候就给span添加这个样式*/
   [class*='vm-icon'] + span {
     margin-left: 6px;
   }

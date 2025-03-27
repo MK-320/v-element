@@ -14,4 +14,6 @@ export interface ButtonProps {
   circle?: boolean
   disabled?: boolean
   autofocus?: boolean
+  loading?: boolean
+  icon?: string
 }
