@@ -7,6 +7,7 @@
     <Transition :name="transition">
       <div v-if="isOpen" class="vm-tooltip__popper" ref="popperNode">
         <slot name="content">{{ content }}</slot>
+        <div id="arrow" data-popper-arrow></div>
       </div>
     </Transition>
   </div>
@@ -32,12 +33,20 @@ const isOpen = ref(false)
 const triggerNode = ref<HTMLElement>()
 const popperNode = ref<HTMLElement>()
 const popperContainNode = ref<HTMLElement>()
-let openTimes = 0
-let closeTimes = 0
+// let openTimes = 0
+// let closeTimes = 0
 
 const popperOptions = computed(() => {
   return {
     placement: props.placement, // 优先级更低
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 9]
+        }
+      }
+    ],
     ...props.popperOptions
   }
 })
@@ -47,16 +56,16 @@ let outerEvents: Record<string, any> = reactive({})
 
 const open = () => {
 
-  openTimes++
-  console.log("输出openTimes：", openTimes);
+  //openTimes++
+  //console.log("输出openTimes：", openTimes);
   isOpen.value = true
   emits('visible-change', true)
 
 }
 const close = () => {
 
-  closeTimes++
-  console.log("输出closeTimes：", closeTimes);
+  //closeTimes++
+  //console.log("输出closeTimes：", closeTimes);
   isOpen.value = false
   emits('visible-change', false)
 
@@ -146,7 +155,7 @@ defineExpose<TooltipInstance>({
 */
 </script>
 <style scoped>
-.vm-tooltip {
+/**.vm-tooltip {
   border: 2px solid blue
 }
 
@@ -156,5 +165,5 @@ defineExpose<TooltipInstance>({
 
 .vm-tooltip__popper {
   border: 2px solid green;
-}
+}**/
 </style>

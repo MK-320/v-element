@@ -1,14 +1,16 @@
-/* .vm-tooltip {
+.vm-tooltip {
   --vm-popover-bg-color: var(--vm-bg-color-overlay);
   --vm-popover-font-size: var(--vm-font-size-base);
   --vm-popover-border-color: var(--vm-border-color);
   --vm-popover-padding: 12px;
   --vm-popover-border-radius: 4px;
   display: inline-block;
-} */
-
+}
+h1 {
+  margin-bottom: 0 !important; /*去除多余的空白*/
+}
 .vm-tooltip {
-  /* .vm-tooltip__popper {
+  .vm-tooltip__popper {
     background: var(--vm-popover-bg-color);
     border-radius: var(--vm-popover-border-radius);
     border: 1px solid var(--vm-popover-border-color);
@@ -21,6 +23,7 @@
     word-break: break-all;
     box-sizing: border-box;
     z-index: 1000;
+    /* Arrow 箭头 样式*/
     #arrow,
     #arrow::before {
       position: absolute;
@@ -34,7 +37,7 @@
     }
     #arrow::before {
       visibility: visible;
-      content: "";
+      content: '';
       transform: rotate(45deg);
     }
     &[data-popper-placement^='top'] > #arrow {
@@ -52,23 +55,23 @@
     &[data-popper-placement^='right'] > #arrow {
       left: -5px;
     }
-    &[data-popper-placement^="top"] > #arrow::before {
+    &[data-popper-placement^='top'] > #arrow::before {
       border-right: 1px solid var(--vm-popover-border-color);
       border-bottom: 1px solid var(--vm-popover-border-color);
     }
-    &[data-popper-placement^="bottom"] > #arrow::before {
+    &[data-popper-placement^='bottom'] > #arrow::before {
       border-left: 1px solid var(--vm-popover-border-color);
       border-top: 1px solid var(--vm-popover-border-color);
     }
-    &[data-popper-placement^="left"] > #arrow::before {
+    &[data-popper-placement^='left'] > #arrow::before {
       border-right: 1px solid var(--vm-popover-border-color);
       border-top: 1px solid var(--vm-popover-border-color);
     }
-    &[data-popper-placement^="right"] > #arrow::before {
+    &[data-popper-placement^='right'] > #arrow::before {
       border-left: 1px solid var(--vm-popover-border-color);
       border-bottom: 1px solid var(--vm-popover-border-color);
     }
-  } */
+  }
 
   .fade-enter-active,
   .fade-leave-active {

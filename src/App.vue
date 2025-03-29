@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Options } from '@popperjs/core/index'
+// import type { Options } from '@popperjs/core/index'
 import Button from './components/Button/Button.vue'
 import { ref, onMounted } from 'vue'
 import type { ButtonInstance } from '@/components/Button/types.ts'
@@ -12,10 +12,10 @@ const buttonRef = ref<ButtonInstance | null>(null)
 const triggerRef = ref<any>('hover')
 const openedValue = ref([''])
 const tooltipRef = ref<TooltipInstance | null>(null)
-const options: Partial<Options> = {
-  placement: 'right-end',
-  strategy: 'fixed',
-}
+// const options: Partial<Options> = {
+//   placement: 'right-end',
+//   strategy: 'fixed',
+// }
 const openTooltip = () => {
   tooltipRef.value?.show()
 }
