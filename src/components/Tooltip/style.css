@@ -6,8 +6,8 @@
   --vm-popover-border-radius: 4px;
   display: inline-block;
 }
-h1 {
-  margin-bottom: 0 !important; /*去除多余的空白*/
+  h1 {
+    margin-bottom: 0 !important; /*去除多余的空白*/
 }
 .vm-tooltip {
   .vm-tooltip__popper {

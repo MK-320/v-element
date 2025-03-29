@@ -33,20 +33,12 @@ const isOpen = ref(false)
 const triggerNode = ref<HTMLElement>()
 const popperNode = ref<HTMLElement>()
 const popperContainNode = ref<HTMLElement>()
-// let openTimes = 0
-// let closeTimes = 0
+//let openTimes = 0
+//let closeTimes = 0
 
 const popperOptions = computed(() => {
   return {
     placement: props.placement, // 优先级更低
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 9]
-        }
-      }
-    ],
     ...props.popperOptions
   }
 })
@@ -56,7 +48,7 @@ let outerEvents: Record<string, any> = reactive({})
 
 const open = () => {
 
-  //openTimes++
+  // openTimes++
   //console.log("输出openTimes：", openTimes);
   isOpen.value = true
   emits('visible-change', true)

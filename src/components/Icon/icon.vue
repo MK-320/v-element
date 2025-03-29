@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { omit } from 'lodash'
 import { computed } from 'vue'
+//import type { FontAwesomeIconProps } from '@fortawesome/vue-fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import type { IconProps } from './types'
 

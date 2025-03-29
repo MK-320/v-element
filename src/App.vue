@@ -6,10 +6,9 @@ import type { ButtonInstance } from '@/components/Button/types.ts'
 import Collapse from './components/Collapse/Collapse.vue'
 import Item from './components/Collapse/CollapseItem.vue'
 import Icon from './components/Icon/icon.vue'
-import Tooltip from './components/Tooltip/Tooltip.vue'
 import type { TooltipInstance } from './components/Tooltip/types.ts'
+import Tooltip from './components/Tooltip/Tooltip.vue'
 const buttonRef = ref<ButtonInstance | null>(null)
-const triggerRef = ref<any>('hover')
 const openedValue = ref([''])
 const tooltipRef = ref<TooltipInstance | null>(null)
 // const options: Partial<Options> = {
@@ -27,15 +26,14 @@ onMounted(() => {
   if (buttonRef.value) {
     console.log(buttonRef.value.ref)
   }
-  setTimeout(() => {
-    // triggerRef.value = 'click'
-  }, 2000)
+
+  setTimeout(() => { }, 2000)
 })
 </script>
 
 <template>
   <header>
-    <Tooltip placement="right" :trigger="triggerRef" ref="tooltipRef" :openDelay="1000" :closeDelay="1000">
+    <Tooltip placement="right">
       <img src="./assets/logo.svg" width="125" height="125" alt="Vue logo" />
       <template #content>
         <h1>Hello World</h1>

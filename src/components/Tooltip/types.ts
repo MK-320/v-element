@@ -2,7 +2,7 @@ import type { Placement, Options } from '@popperjs/core'
 export interface TooltipProps {
   content?: string
   trigger?: 'hover' | 'click'
-  placement: Placement
+  placement?: Placement
   manual?: boolean
   popperOptions?: Partial<Options> //这个options里面包含了placement，所以要是传入options的优先级要比placement更高，会覆盖掉
   // option是Popperjs的配置项，默认里面的每个参数都是必选的，
