@@ -28,7 +28,9 @@ onMounted(() => {
     console.log(buttonRef.value.ref)
   }
 
-  setTimeout(() => { }, 2000)
+  setTimeout(() => {
+    //triggerRef.value = 'click'
+  }, 2000)
 })
 </script>
 
