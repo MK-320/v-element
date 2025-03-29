@@ -9,6 +9,7 @@ import Icon from './components/Icon/icon.vue'
 import type { TooltipInstance } from './components/Tooltip/types.ts'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 const buttonRef = ref<ButtonInstance | null>(null)
+const triggerRef = ref<any>('hover')
 const openedValue = ref([''])
 const tooltipRef = ref<TooltipInstance | null>(null)
 // const options: Partial<Options> = {
@@ -33,7 +34,7 @@ onMounted(() => {
 
 <template>
   <header>
-    <Tooltip placement="right">
+    <Tooltip placement="right" :trigger="triggerRef" ref="tooltipRef" :openDelay="1000" :closeDelay="1000">
       <img src="./assets/logo.svg" width="125" height="125" alt="Vue logo" />
       <template #content>
         <h1>Hello World</h1>
