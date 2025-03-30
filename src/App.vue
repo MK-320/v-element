@@ -1,47 +1,55 @@
 <script setup lang="ts">
-// import type { Options } from '@popperjs/core/index'
-import Button from './components/Button/Button.vue'
-import { ref, onMounted } from 'vue'
-import type { ButtonInstance } from '@/components/Button/types.ts'
-import Collapse from './components/Collapse/Collapse.vue'
-import Item from './components/Collapse/CollapseItem.vue'
-import Icon from './components/Icon/icon.vue'
-import type { TooltipInstance } from './components/Tooltip/types.ts'
-import Tooltip from './components/Tooltip/Tooltip.vue'
-const buttonRef = ref<ButtonInstance | null>(null)
-const triggerRef = ref<any>('hover')
-const openedValue = ref([''])
-const tooltipRef = ref<TooltipInstance | null>(null)
-// const options: Partial<Options> = {
-//   placement: 'right-end',
-//   strategy: 'fixed',
-// }
+import Button from "./components/Button/Button.vue";
+import { ref, onMounted, h } from "vue";
+import type { ButtonInstance } from "@/components/Button/types.ts";
+import Collapse from "./components/Collapse/Collapse.vue";
+import Item from "./components/Collapse/CollapseItem.vue";
+import Icon from "./components/Icon/icon.vue";
+import Dropdown from "./components/Dropdown/Dropdown.tsx";
+import type { MenuOption } from "./components/Dropdown/types.ts";
+import type { TooltipInstance } from "./components/Tooltip/types.ts";
+
+const buttonRef = ref<ButtonInstance | null>(null);
+const triggerRef = ref<any>("click");
+const openedValue = ref([""]);
+const tooltipRef = ref<TooltipInstance | null>(null);
+const options: MenuOption[] = [
+  { key: "1", label: h("b", "this is a bold text") },
+  { key: "2", label: "Option 2", disabled: true },
+  { key: "3", label: "Option 3", divided: true },
+  { key: "4", label: "Option 4" },
+];
 const openTooltip = () => {
-  tooltipRef.value?.show()
-}
+  tooltipRef.value?.show();
+};
 const closeTooltip = () => {
-  tooltipRef.value?.hide()
-}
+  tooltipRef.value?.hide();
+};
 
 onMounted(() => {
   if (buttonRef.value) {
-    console.log(buttonRef.value.ref)
+    console.log(buttonRef.value.ref);
   }
 
   setTimeout(() => {
     //triggerRef.value = 'click'
-  }, 2000)
-})
+  }, 2000);
+});
 </script>
 
 <template>
   <header>
-    <Tooltip placement="right" :trigger="triggerRef" ref="tooltipRef" :openDelay="1000" :closeDelay="1000">
+    <Dropdown
+      placement="right"
+      :trigger="triggerRef"
+      :menuOptions="options"
+      @visible-change="(e) => console.log('visible-change', e)"
+      @select="(e) => console.log('select', e)"
+      ref="tooltipRef"
+      manual
+    >
       <img src="./assets/logo.svg" width="125" height="125" alt="Vue logo" />
-      <template #content>
-        <h1>Hello World</h1>
-      </template>
-    </Tooltip>
+    </Dropdown>
   </header>
   <main>
     <br />
