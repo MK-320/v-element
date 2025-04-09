@@ -24,6 +24,7 @@ export default [
   },
   {
     files: ['**/*.ts'],
+    ignores: ['docs/.vitepress/**/*.ts', 'vite.config.*', 'vitest.config.*'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -36,7 +37,46 @@ export default [
     }
   },
   {
+    files: ['vite.config.*', 'vitest.config.*'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.node.json'
+      }
+    }
+  },
+  {
+    files: ['docs/.vitepress/**/*.ts', 'docs/demo/**/*.ts'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.vitepress.json'
+      }
+    },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn'
+    }
+  },
+  {
+    files: ['docs/demo/**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        sourceType: 'module',
+        project: './tsconfig.vitepress.json',
+        extraFileExtensions: ['.vue'],
+        tsconfigRootDir: '.'
+      }
+    },
+    rules: {
+      'vue/multi-word-component-names': 'off'
+    }
+  },
+  {
     files: ['**/*.vue'],
+    ignores: ['docs/demo/**/*.vue'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {

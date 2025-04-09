@@ -5,6 +5,7 @@ import type { ButtonInstance } from "@/components/Button/types.ts";
 import Collapse from "./components/Collapse/Collapse.vue";
 import Item from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/icon.vue";
+import Message from "./components/Message/Message.vue";
 import Dropdown from "./components/Dropdown/Dropdown.tsx";
 import type { MenuOption } from "./components/Dropdown/types.ts";
 import type { TooltipInstance } from "./components/Tooltip/types.ts";
@@ -39,6 +40,16 @@ onMounted(() => {
 
 <template>
   <header>
+    <Message
+      type="warning"
+      :duration="3000"
+      :offset="20"
+      transitionName="fadeUp"
+      message="this is a successful Message"
+      :onDestroy="() => {}"
+      id="message-id"
+      :zIndex="1000"
+    ></Message>
     <Dropdown
       placement="right"
       :trigger="triggerRef"

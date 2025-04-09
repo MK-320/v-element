@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["docs/.vitepress/**/*.ts", "docs/.vitepress/**/*.tsx", "docs/demo/**/*.ts", "docs/demo/**/*.tsx", "docs/demo/**/*.vue"],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}
