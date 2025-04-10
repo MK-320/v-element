@@ -41,7 +41,6 @@
           @change="handleChange"
           @focus="handleFocus"
           @blur="handleBlur"
-          @click="clear"
         />
 
         <!-- suffix slot -->
