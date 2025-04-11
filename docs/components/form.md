@@ -15,4 +15,4 @@ description: Form 组件的文档
 在每一个 form 组件中，你需要一个 form-item 字段作为输入项的容器，用于获取值与验证值。
 
 <preview path="../demo/Form/Basic.vue" title="典型表单" description="Form 典型表单"></preview>
-x1.00
+

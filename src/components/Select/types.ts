@@ -17,20 +17,20 @@ export interface SelectProps {
   options?: SelectOption[]
   // 一些基本表单属性
   placeholder: string
-  disabled: boolean
+  disabled?: boolean
   clearable?: boolean
-  renderLabel?: RenderLabelFunc   // 自定义选项渲染
+  renderLabel?: RenderLabelFunc // 自定义选项渲染
   filterable?: boolean
-  filterMethod?: CustomFilterFunc// 可过滤选项
-  remote?: boolean   // 是否使用远程搜索
+  filterMethod?: CustomFilterFunc // 可过滤选项
+  remote?: boolean // 是否使用远程搜索
   remoteMethod?: CustomFilterRemoteFunc
 }
 export interface SelectStates {
   inputValue: string
   selectedOption: null | SelectOption
-  // mouseHover: boolean
-  // loading: boolean
-  // highlightIndex: number
+  mouseHover: boolean
+  loading: boolean
+  highlightIndex: number
 }
 
 export interface SelectEmits {

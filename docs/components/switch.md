@@ -35,4 +35,4 @@ description: Switch 组件的文档
 使用 **active-text** 属性与 **inactive-text** 属性来设置开关的文字描述。
 
 <preview path="../demo/Switch/Text.vue" title="支持文字描述" description="Switch 文字描述"></preview>
-x1.00
+
