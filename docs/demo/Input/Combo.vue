@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import Input from "@/components/Input/Input.vue";
-import Icon from "@/components/Icon/Icon.vue";
-const test = ref("");
+import { ref } from 'vue'
+import Input from '@/components/Input/Input.vue'
+import Icon from '@/components/Icon/Icon.vue'
+const test = ref('')
 </script>
 <template>
   <Input v-model="test" placeholder="prepend append">

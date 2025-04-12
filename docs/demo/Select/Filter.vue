@@ -10,9 +10,9 @@ const options2 = [
 ]
 </script>
 <template>
-  <Select
-    v-model="test"
-    placeholder="可以过滤的选择器，请输入"
+  <Select 
+    v-model="test" 
+    placeholder="可以过滤的选择器，请输入" 
     :options="options2"
     filterable
   />

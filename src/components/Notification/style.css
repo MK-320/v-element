@@ -1,0 +1,84 @@
+.vm-notification {
+  --vm-notification-width: 330px;
+  --vm-notification-padding: 14px 26px 14px 13px;
+  --vm-notification-radius: 8px;
+  --vm-notification-shadow: var(--vm-box-shadow-light);
+  --vm-notification-border-color: var(--vm-border-color-lighter);
+  --vm-notification-icon-size: 24px;
+  --vm-notification-close-font-size: var(--vm-message-close-size, 16px);
+  --vm-notification-content-font-size: var(--vm-font-size-base);
+  --vm-notification-content-color: var(--vm-text-color-regular);
+  --vm-notification-title-font-size: 16px;
+  --vm-notification-title-color: var(--vm-text-color-primary);
+  --vm-notification-close-color: var(--vm-text-color-secondary);
+  --vm-notification-close-hover-color: var(--vm-text-color-regular)
+}
+.vm-notification {
+  display: flex;
+  width: var(--vm-notification-width);
+  padding: var(--vm-notification-padding);
+  border-radius: var(--vm-notification-radius);
+  box-sizing: border-box;
+  border: 1px solid var(--vm-notification-border-color);
+  position: fixed;
+  background-color: var(--vm-bg-color-overlay);
+  box-shadow: var(--vm-notification-shadow);
+  transition: opacity var(--vm-transition-duration),transform var(--vm-transition-duration),right var(--vm-transition-duration),top .4s,bottom var(--vm-transition-duration);
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  z-index: 9999;
+  right: 10px;
+  top: 0;
+
+  .vm-notification__text {
+    margin: 0 10px;
+  }
+  .vm-notification__icon {
+    height: var(--vm-notification-icon-size);
+    width: var(--vm-notification-icon-size);
+    font-size: var(--vm-notification-icon-size);
+    color: var(--vm-notification-icon-color);
+  }
+
+  .vm-notification__title {
+    font-weight: 700;
+    font-size: var(--vm-notification-title-font-size);
+    line-height: var(--vm-notification-icon-size);
+    color: var(--vm-notification-title-color);
+    margin: 0
+  }
+  .vm-notification__content {
+    font-size: var(--vm-notification-content-font-size);
+    line-height: 24px;
+    margin: 6px 0 0;
+    color: var(--vm-notification-content-color);
+    text-align: justify
+  }
+  .vm-notification__close {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    cursor: pointer;
+    color: var(--vm-notification-close-color);
+    font-size: var(--vm-notification-close-font-size)
+  }
+}
+@each $val in info,success,warning,danger {
+  .vm-notification--$(val) {
+    --vm-notification-icon-color: var(--vm-color-$(val));
+    color: var(--el-notification-icon-color);
+  }
+}
+
+.vm-notification-enter-active,
+.vm-notification-leave-active {
+  transition: all 0.3s ease;
+}
+.vm-notification-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.vm-notification-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}

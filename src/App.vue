@@ -9,6 +9,7 @@ import Message from "./components/Message/Message.vue";
 import Dropdown from "./components/Dropdown/Dropdown.tsx";
 import type { MenuOption } from "./components/Dropdown/types.ts";
 import type { TooltipInstance } from "./components/Tooltip/types.ts";
+import { createMessage } from './components/Message/method'
 
 const buttonRef = ref<ButtonInstance | null>(null);
 const triggerRef = ref<any>("click");
@@ -31,7 +32,9 @@ onMounted(() => {
   if (buttonRef.value) {
     console.log(buttonRef.value.ref);
   }
-
+  createMessage({ message: 'hello world', duration: 0, showClose: true })
+  createMessage({ message: 'hello world again', duration: 0, type: 'success', showClose: true })
+  createMessage({ message: 'hello world three', duration: 0, type: 'danger', showClose: true })
   setTimeout(() => {
     //triggerRef.value = 'click'
   }, 2000);
@@ -40,25 +43,13 @@ onMounted(() => {
 
 <template>
   <header>
-    <Message
-      type="warning"
-      :duration="3000"
-      :offset="20"
-      transitionName="fadeUp"
-      message="this is a successful Message"
-      :onDestroy="() => {}"
-      id="message-id"
-      :zIndex="1000"
-    ></Message>
-    <Dropdown
-      placement="right"
-      :trigger="triggerRef"
-      :menuOptions="options"
-      @visible-change="(e) => console.log('visible-change', e)"
-      @select="(e) => console.log('select', e)"
-      ref="tooltipRef"
-      manual
-    >
+    <Message type="success" :duration="3000" :offset="20" transitionName="fadeUp" message="this is a successful Message"
+      :onDestroy="() => { }" id="message-id" :zIndex="1000"></Message>
+
+
+    <Dropdown placement="right" :trigger="triggerRef" :menuOptions="options"
+      @visible-change="(e) => console.log('visible-change', e)" @select="(e) => console.log('select', e)"
+      ref="tooltipRef" manual>
       <img src="./assets/logo.svg" width="125" height="125" alt="Vue logo" />
     </Dropdown>
   </header>
