@@ -55,6 +55,7 @@
     "postcss-for": "^2.1.1",
     "postcss-nested": "^7.0.2",
     "prettier": "^3.5.3",
+    "rollup": "^4.40.0",
     "typescript": "~5.8.0",
     "typescript-eslint": "^8.27.0",
     "vite": "^6.2.1",
