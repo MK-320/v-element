@@ -4,7 +4,7 @@ import { type Placement, type Options, placements } from '@popperjs/core'
 import type { MenuOption } from './types'
 import Tooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipInstance } from '../Tooltip/types'
-import { E } from 'vitest/dist/chunks/reporters.d.CqBhtcTq.js'
+
 export default defineComponent({
   name: 'VmDropdown',
   props: {
@@ -46,7 +46,6 @@ export default defineComponent({
   emits: ['visible-change', 'select'],
   setup(props, { slots, emit, expose }) {
     const tooltipRef = ref<TooltipInstance | null>(null)
-
     const itemClick = (e: MenuOption) => {
       if (e.disabled) {
         return

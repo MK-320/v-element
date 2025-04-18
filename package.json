@@ -44,7 +44,7 @@
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "eslint-plugin-vue": "^10.0.0",
+    "eslint-plugin-vue": "^9.2.2",
     "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
     "jiti": "^2.4.2",
@@ -62,7 +62,7 @@
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitepress": "^1.6.3",
     "vitest": "^3.0.9",
-    "vue-eslint-parser": "^10.1.1",
+    "vue-eslint-parser": "^9.3.1",
     "vue-tsc": "^2.2.8"
   }
 }

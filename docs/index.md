@@ -3,15 +3,15 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  name: 'V-Element组件库'
+  text: '最新技术！'
+  tagline: 基于Vue3和TypeScript的仿ElementUI组件库
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 示例文档
       link: /markdown-examples
     - theme: alt
-      text: API Examples
+      text: 接口文档
       link: /api-examples
 
 features:
@@ -22,4 +22,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-

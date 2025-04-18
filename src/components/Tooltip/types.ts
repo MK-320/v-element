@@ -14,7 +14,6 @@ export interface TooltipProps {
 }
 
 export interface TooltipEmits {
-  // eslint-disable-next-line no-unused-vars
   (e: 'visible-change', value: boolean): void
   (e: 'click-outside', value: boolean): void
 }

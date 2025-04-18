@@ -17,6 +17,7 @@
       :disabled="disabled"
       @keydown.enter="switchValue"
     />
+
     <div class="vm-switch__core">
       <div class="vm-switch__core-inner">
         <span v-if="activeText || inactiveText" class="vm-switch__core-inner-text">

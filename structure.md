@@ -1,0 +1,45 @@
+```c
+└── 📁v-element
+    └── 📁docs
+        └── 📁.vitepress
+            └── config.ts
+            └── 📁theme
+                └── custom.css
+                └── index.js
+        └── api-examples.md
+        └── 📁components
+        └── 📁demo
+            └── 📁Button
+            └── ......
+        └── get-started.md
+        └── index.md
+        └── markdown-examples.md
+    └── 📁public
+        └── favicon.ico
+    └── 📁src
+        └── App.vue
+        └── 📁assets
+        └── 📁components
+            └── 📁Button
+                └── Button.vue
+                └── style.css
+                └── types.ts
+            └── 📁Collapse
+            └── ......
+        └── 📁hooks
+        └── index.ts
+        └── main.ts
+        └── 📁styles
+            └── index.css
+            └── reset.css
+            └── vars.css
+        └── utils.ts
+    └── eslint.config.js
+    └── index.html
+    └── package.json
+    └── postcss.config.cjs
+    └── README.md
+    └── tsconfig.json
+    └── tsconfig.vitepress.json
+    └── vite.config.ts
+```

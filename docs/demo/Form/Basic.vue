@@ -1,38 +1,43 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref } from "vue";
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Form from '@/components/Form/Form.vue'
-import FormItem from '@/components/Form/FormItem.vue'
-import Input from '@/components/Input/Input.vue'
-import Button from '@/components/Button/Button.vue'
-const formRef = ref()
+import Form from "@/components/Form/Form.vue";
+import FormItem from "@/components/Form/FormItem.vue";
+import Input from "@/components/Input/Input.vue";
+import Button from "@/components/Button/Button.vue";
+const formRef = ref();
 const model = reactive({
-  email: '123',
-  password: '',
-  confirmPwd: '',
-  commonInput: ''
-})
+  email: "123",
+  password: "",
+  confirmPwd: "",
+  commonInput: "",
+});
 const rules = {
-  email: [{ type: 'email', required: true, trigger: 'blur' }],
-  password: [{ type: 'string', required: true, trigger: 'blur', min: 3, max: 5 }],
-  confirmPwd: [{ type: 'string', required: true, trigger: 'blur' }, {
-    validator: (rule, value) => value === model.password, trigger: 'blur', message: '两个密码必须相同'
-  }],
-  commonInput: [{ type: 'string', required: true, trigger: 'blur', }],
-}
+  email: [{ type: "email", required: true, trigger: "blur" }],
+  password: [{ type: "string", required: true, trigger: "blur", min: 3, max: 5 }],
+  confirmPwd: [
+    { type: "string", required: true, trigger: "blur" },
+    {
+      validator: (rule, value) => value === model.password,
+      trigger: "blur",
+      message: "两个密码必须相同",
+    },
+  ],
+  commonInput: [{ type: "string", required: true, trigger: "blur" }],
+};
 
 const submit = async () => {
   try {
-    await formRef.value.validate()
-    console.log('passed!')
+    await formRef.value.validate();
+    console.log("passed!");
   } catch (e) {
-    console.log('the error', e)
+    console.log("the error", e);
   }
-}
+};
 const reset = () => {
-  formRef.value.resetFields()
-}
+  formRef.value.resetFields();
+};
 </script>
 
 <template>
@@ -45,9 +50,9 @@ const reset = () => {
         <Input type="password" v-model="model.password" />
       </FormItem>
       <!-- 这里是普通的input验证，非Input组件 -->
-      <FormItem label="原生input" prop="commonInput">
-        <!-- 这个是作用域 插槽 -->
-        <template #default="{ validate }">
+      <!-- <FormItem label="原生input" prop="commonInput"> -->
+      <!-- 这个是作用域 插槽 -->
+      <!-- <template #default="{ validate }">
           <input class="commonInput" type="text" v-model="model.commonInput" @blur="async (e) => {
             try {
               await validate('blur')
@@ -56,7 +61,7 @@ const reset = () => {
             }
           }"></input>
         </template>
-      </FormItem>
+      </FormItem> -->
 
       <FormItem prop="confirmPwd" label="confirm password">
         <Input v-model="model.confirmPwd" type="password" />
@@ -69,8 +74,6 @@ const reset = () => {
 
     form value:
     <pre>{{ model }}</pre>
-
-
   </div>
 </template>
 

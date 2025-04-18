@@ -1,9 +1,13 @@
 :root {
-  --vp-c-brand: var(--vm-color-primary);
+  --vp-c-brand-1: var(--vm-color-primary); /**name的样式**/
+  --vp-c-brand-2: var(--vm-color-primary);
+  --vp-c-brand-3: var(--vm-color-primary); /** actions下面的text的样式*/
+
+  --vp-c-brand: var(--vm-color-primary) !important; /** 原生版本的样式变量名字*/
   --vp-c-brand-light: var(--vm-color-primary-light-3);
   --vp-c-brand-lighter: var(--vm-color-primary-light-5);
   --vp-c-brand-dark: var(--vm-color-primary-dark-2);
-  --vp-c-brand-darker: #265F99;
+  --vp-c-brand-darker: #265f99;
 
   --component-preview-bg: var(--vp-code-block-bg);
   --component-preview-soft: var(--vp-code-block-bg-light);
@@ -12,6 +16,12 @@
 body {
   color: var(--vp-c-text-1);
 }
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   color: var(--vp-c-text-1);
 }

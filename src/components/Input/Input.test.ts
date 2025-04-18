@@ -1,8 +1,16 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Input from './Input.vue'
 
-describe('Input', () => {
+describe('Input.vue', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
   it('基本展示', () => {
     // 针对动态 class，查看 classes 是否正确
     // 针对 v-if 是否渲染正确的标签以及内容
@@ -102,6 +110,34 @@ describe('Input', () => {
     await input.trigger('blur')
     expect(wrapper.emitted()).toHaveProperty('blur')
   })
+  it('disabled状态', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        modelValue: 'test',
+        disabled: true,
+        type: 'text',
+      },
+    })
+    expect(wrapper.classes()).toContain('is-disabled')
+    const input = wrapper.get('input')
+    expect(input.attributes('disabled')).toBe('')
+    await input.trigger('click')
+    expect(wrapper.emitted('click')).toBeFalsy()
+  })
+
+  it('readonly状态', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        modelValue: 'test',
+        readonly: true,
+        type: 'text',
+      },
+    })
+    expect(wrapper.classes()).toContain('is-readonly')
+    const input = wrapper.get('input')
+    expect(input.attributes('readonly')).toBe('')
+  })
+
   it('支持切换密码显示', async () => {
     const wrapper = mount(Input, {
       props: {
@@ -126,5 +162,56 @@ describe('Input', () => {
     await eyeIcon.trigger('click')
     expect(input.element.type).toBe('text')
     expect(wrapper.find('.vm-input__password').attributes('icon')).toBe('eye')
+  })
+
+  it('size属性', async () => {
+    const sizes = ['large', 'small'] as const
+    for (const size of sizes) {
+      const wrapper = mount(Input, {
+        props: {
+          size,
+          type: 'text',
+          modelValue: '',
+        },
+      })
+      expect(wrapper.classes()).toContain(`vm-input--${size}`)
+    }
+  })
+
+  it('maxlength属性', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        maxlength: 10,
+        type: 'text',
+        modelValue: '',
+      },
+    })
+    expect(wrapper.get('input').attributes('maxlength')).toBe('10')
+  })
+
+  it('placeholder属性', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        placeholder: '请输入内容',
+        type: 'text',
+        modelValue: '',
+      },
+    })
+    expect(wrapper.get('input').attributes('placeholder')).toBe('请输入内容')
+  })
+
+  it('prefix/suffix插槽', async () => {
+    const wrapper = mount(Input, {
+      props: {
+        type: 'text',
+        modelValue: '',
+      },
+      slots: {
+        prefix: 'prefix',
+        suffix: 'suffix',
+      },
+    })
+    expect(wrapper.find('.vm-input__prefix').exists()).toBeTruthy()
+    expect(wrapper.find('.vm-input__suffix').exists()).toBeTruthy()
   })
 })

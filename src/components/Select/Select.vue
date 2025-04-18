@@ -39,6 +39,7 @@
           />
         </template>
       </Input>
+
       <template #content>
         <div class="vm-select__loading" v-if="states.loading">
           <Icon icon="spinner" spin />

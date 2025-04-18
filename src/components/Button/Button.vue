@@ -24,21 +24,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Icon from '../Icon/icon.vue'
-import type { ButtonProps } from './types'
+import { ref } from "vue";
+import Icon from "../Icon/icon.vue";
+import type { ButtonProps } from "./types";
 defineOptions({
-  name: 'VmButton',
-})
+  name: "VmButton",
+});
 withDefaults(defineProps<ButtonProps>(), {
-  nativeType: 'button', // 原生button属性
-})
-const _ref = ref<HTMLButtonElement>()
+  nativeType: "button", // 原生button属性
+});
+const _ref = ref<HTMLButtonElement>();
 
 defineExpose({
   ref: _ref,
-})
+});
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

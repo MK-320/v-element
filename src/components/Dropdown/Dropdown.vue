@@ -10,6 +10,7 @@
       @visible-change="visibleChange"
     >
       <slot />
+      <!--这里的插槽会替换掉Tooltip组件名叫content的插槽的内容 -->
       <template #content>
         <ul cl ass="vm-dropdown__menu">
           <template v-for="item in menuOptions" :key="item.key">

@@ -1,10 +1,13 @@
 <template>
-  <div class="vm-form-item" :class="{
-    'is-error': validateStatus.state === 'error',
-    'is-success': validateStatus.state === 'success',
-    'is-loading': validateStatus.loading,
-    'is-required': isRequired,
-  }">
+  <div
+    class="vm-form-item"
+    :class="{
+      'is-error': validateStatus.state === 'error',
+      'is-success': validateStatus.state === 'success',
+      'is-loading': validateStatus.loading,
+      'is-required': isRequired,
+    }"
+  >
     <label class="vm-form-item__label">
       <slot name="label" :label="label">
         {{ label }}
@@ -17,14 +20,19 @@
         {{ validateStatus.errorMsg }}
       </div>
     </div>
-
   </div>
 </template>
 <script setup lang="ts">
 import { inject, computed, reactive, provide, onMounted, onUnmounted } from "vue";
 import { isNil } from "lodash-es";
 import Schema from "async-validator";
-import type { FormItemProps, FormValidateFailure, FormItemContext, FormItemInstance, ValidateStatusProp } from "./types";
+import type {
+  FormItemProps,
+  FormValidateFailure,
+  FormItemContext,
+  FormItemInstance,
+  ValidateStatusProp,
+} from "./types";
 import { formContextKey, formItemContextKey } from "./types";
 defineOptions({
   name: "VmFormItem",
@@ -53,10 +61,10 @@ const validateStatus: ValidateStatusProp = reactive({
   errorMsg: "",
   loading: false,
 });
-let initialValue: any = null
+let initialValue: any = null;
 const isRequired = computed(() => {
-  return itemRules.value.some(rule => rule.required)
-})
+  return itemRules.value.some((rule) => rule.required);
+});
 const getTriggeredRules = (trigger?: string) => {
   const rules = itemRules.value;
   if (rules) {
@@ -73,7 +81,7 @@ const validate = async (trigger?: string) => {
   const modelName = props.prop;
   const triggeredRules = getTriggeredRules(trigger);
   if (triggeredRules.length === 0) {
-    return true
+    return true;
   }
   if (modelName) {
     const validator = new Schema({
@@ -99,39 +107,38 @@ const validate = async (trigger?: string) => {
   }
 };
 const clearValidate = () => {
-  validateStatus.state = 'init'
-  validateStatus.errorMsg = ''
-  validateStatus.loading = false
-}
+  validateStatus.state = "init";
+  validateStatus.errorMsg = "";
+  validateStatus.loading = false;
+};
 const resetField = () => {
-  clearValidate()
-  const model = formContext?.model
+  clearValidate();
+  const model = formContext?.model;
   if (model && props.prop && !isNil(model[props.prop])) {
-    model[props.prop] = initialValue
+    model[props.prop] = initialValue;
   }
-}
-
+};
 
 const context: FormItemContext = {
   validate,
-  prop: props.prop || '',
+  prop: props.prop || "",
   resetField,
   clearValidate,
 };
 provide(formItemContextKey, context);
 onMounted(() => {
   if (props.prop) {
-    formContext?.addField(context)
-    initialValue = innerValue.value
+    formContext?.addField(context);
+    initialValue = innerValue.value;
   }
-})
+});
 onUnmounted(() => {
-  formContext?.removeField(context)
-})
+  formContext?.removeField(context);
+});
 defineExpose<FormItemInstance>({
   validateStatus,
   validate,
   resetField,
-  clearValidate
-})
+  clearValidate,
+});
 </script>
