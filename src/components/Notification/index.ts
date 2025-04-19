@@ -5,13 +5,10 @@ Notification.install = (app: any) => {
   app.component(Notification.name, Notification)
   app.config.globalProperties.$notification = {
     create: createNotification,
-    closeAll
+    closeAll,
   }
 }
 
 export default Notification
-export {
-  createNotification,
-  closeAll
-}
+export { createNotification, closeAll }
 export * from './types'
