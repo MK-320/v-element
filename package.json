@@ -1,19 +1,56 @@
 {
-  "name": "v-element",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@drgeek/v-element",
+  "version": "1.0.0",
+  "description": "Vue3 components library",
   "type": "module",
+  "author": "Yingquan Mu",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "Vue3",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MK-320/v-element/"
+  },
+  "homepage": "后期会加上",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "dist/v-element.css"
+  ],
+  "main": "./dist/umd/v-element.umd.cjs",
+  "module": "./dist/es/v-element.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/v-element.js",
+      "require": "./dist/umd/v-element.umd.cjs",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "npm run build-only && npm run move-style",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "run-p build-es build-umd",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "build-es": "vite build --config vite.es.config.ts",
+    "move-style": "move-file dist/es/v-element.css dist/v-element.css",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -22,7 +59,10 @@
     "@vitepress-demo-preview/component": "^2.3.2",
     "@vitepress-demo-preview/plugin": "^1.4.0",
     "lodash-es": "^4.17.21",
-    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-eslint": "^1.8.1"
+  },
+  "peerDependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -48,6 +88,7 @@
     "globals": "^16.0.0",
     "happy-dom": "^17.4.4",
     "jiti": "^2.4.2",
+    "move-file-cli": "^3.0.0",
     "npm-run-all2": "^7.0.2",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
@@ -63,6 +104,7 @@
     "vitepress": "^1.6.3",
     "vitest": "^3.0.9",
     "vue-eslint-parser": "^9.3.1",
-    "vue-tsc": "^2.2.8"
+    "vue-tsc": "^2.2.8",
+    "vue": "^3.5.13"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "src/index.ts",
+    "src/utils.ts",
+    "src/components/**/*",
+    "src/components/**/*.vue",
+    "src/hooks/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve", // preserve模式,保留 JSX 代码，不进行转换。通常用于配合 Babel 等工具进行后续转换
+    "allowImportingTsExtensions": true, // 开启允许使用 .ts 扩展名导入的选项
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["unplugin-vue-macros/macros-global" /* ... */]
+  },
+  "vueCompilerOptions": {},
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
+}

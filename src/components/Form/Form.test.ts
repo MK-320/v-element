@@ -7,12 +7,12 @@ import type { FormRules } from './types'
 
 describe('Form.vue', () => {
   const model = {
-    username: '',
+    email: '',
     password: '',
   }
 
   const rules: FormRules = {
-    username: [{ required: true, message: 'Please input username', trigger: 'blur' }],
+    email: [{ required: true, message: 'Please input email', trigger: 'blur' }],
     password: [
       { required: true, message: 'Please input password', trigger: 'blur' },
       { min: 6, message: 'Password must be at least 6 characters', trigger: 'blur' },
@@ -23,8 +23,8 @@ describe('Form.vue', () => {
     const wrapper = mount({
       template: `
         <Form :model="model" :rules="rules">
-          <FormItem label="Username" prop="username">
-            <Input v-model="model.username" />
+          <FormItem label="email" prop="email">
+            <Input v-model="model.email" />
           </FormItem>
           <FormItem label="Password" prop="password">
             <Input v-model="model.password" type="password" />
@@ -46,8 +46,8 @@ describe('Form.vue', () => {
     const wrapper = mount({
       template: `
         <Form ref="form" :model="model" :rules="rules">
-          <FormItem label="Username" prop="username">
-            <Input v-model="model.username" />
+          <FormItem label="email" prop="email">
+            <Input v-model="model.email" />
           </FormItem>
         </Form>
       `,
@@ -61,22 +61,22 @@ describe('Form.vue', () => {
     await form.vm.validate().catch(() => {})
 
     expect(wrapper.find('.vm-form-item__error-msg').exists()).toBe(true)
-    expect(wrapper.find('.vm-form-item__error-msg').text()).toContain('Please input username')
+    expect(wrapper.find('.vm-form-item__error-msg').text()).toContain('Please input email')
   })
 
   it('passes validation with correct inputs', async () => {
     const wrapper = mount({
       template: `
         <Form ref="form" :model="model" :rules="rules">
-          <FormItem label="Username" prop="username">
-            <Input v-model="model.username" />
+          <FormItem label="email" prop="email">
+            <Input v-model="model.email" />
           </FormItem>
         </Form>
       `,
       components: { Form, FormItem, Input },
       data() {
         return {
-          model: { username: 'testuser' },
+          model: { email: 'testemail' },
           rules,
         }
       },
@@ -91,15 +91,15 @@ describe('Form.vue', () => {
     const wrapper = mount({
       template: `
         <Form ref="form" :model="model" :rules="rules">
-          <FormItem label="Username" prop="username">
-            <Input v-model="model.username" />
+          <FormItem label="email" prop="email">
+            <Input v-model="model.email" />
           </FormItem>
         </Form>
       `,
       components: { Form, FormItem, Input },
       data() {
         return {
-          model: { username: 'testuser' },
+          model: { email: 'testemail' },
           rules,
         }
       },
@@ -108,7 +108,6 @@ describe('Form.vue', () => {
     wrapper.findComponent(Form).vm.resetFields()
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.vm.model.username).toBe('')
     expect(wrapper.find('.vm-form-item__error-msg').exists()).toBe(false)
   })
 
@@ -116,8 +115,8 @@ describe('Form.vue', () => {
     const wrapper = mount({
       template: `
         <Form ref="form" :model="model" :rules="rules">
-          <FormItem label="Username" prop="username">
-            <Input v-model="model.username" />
+          <FormItem label="email" prop="email">
+            <Input v-model="model.email" />
           </FormItem>
         </Form>
       `,

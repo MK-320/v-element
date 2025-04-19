@@ -17,7 +17,7 @@ import Select from '@/components/Select'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 import './styles/index.css'
-//t图标库
+//图标库
 library.add(fas)
 //所有组件的数组
 const components = [
@@ -39,7 +39,7 @@ const components = [
 const install = (app: any) => {
   components.map((component) => {
     //循环注册组件
-    app.use(component)
+    app.use(component) //注册插件
   })
 }
 //按需引入组件
@@ -64,7 +64,7 @@ export {
   createNotification,
   closeNotificationAll,
 }
-//全局注册组件
+//默认全局注册组件
 export default {
   install,
 }

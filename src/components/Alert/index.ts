@@ -6,4 +6,4 @@ Alert.install = (app: any) => {
 
 export default Alert
 
-export * from './types.ts'
+export * from './types'

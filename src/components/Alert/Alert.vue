@@ -21,26 +21,26 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { AlertProps, AlertEmits } from './types.ts'
+import { ref } from "vue";
+import type { AlertProps, AlertEmits } from "./types.ts";
 
-import Icon from '../Icon/icon.vue'
+import Icon from "../Icon/icon.vue";
 defineOptions({
-  name: 'vmAlert',
-})
+  name: "VmAlert",
+});
 
 withDefaults(defineProps<AlertProps>(), {
-  effect: 'light',
+  effect: "light",
   closable: true,
-})
-const emits = defineEmits<AlertEmits>()
-const visible = ref(true)
+});
+const emits = defineEmits<AlertEmits>();
+const visible = ref(true);
 
 const hideAlert = () => {
-  visible.value = false
-  emits('close')
-}
+  visible.value = false;
+  emits("close");
+};
 defineExpose({
   hide: () => hideAlert(),
-})
+});
 </script>
