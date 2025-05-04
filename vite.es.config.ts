@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-
+//import JavaScriptObfuscator from 'javascript-obfuscator'
 import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
@@ -40,7 +40,28 @@ export default defineConfig({
         '@popperjs/core',
         'axios',
       ],
-      output: {},
+      // output: {
+      //   plugins: [
+      //     {
+      //       name: 'obfuscator',
+      //       renderChunk(code) {
+      //         return JavaScriptObfuscator.obfuscate(code, {
+      //           compact: true,
+      //           controlFlowFlattening: true,
+      //           deadCodeInjection: true,
+      //           identifierNamesGenerator: 'hexadecimal',
+      //           log: false,
+      //           renameGlobals: false,
+      //           rotateStringArray: true,
+      //           selfDefending: true,
+      //           sourceMap: false,
+      //           stringArray: true,
+      //           stringArrayThreshold: 0.75,
+      //         }).getObfuscatedCode()
+      //       },
+      //     },
+      //   ],
+      // },
     },
   },
 })

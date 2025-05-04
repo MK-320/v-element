@@ -39,23 +39,23 @@
 
 ### Attributes
 
-| Name                      | Description                                                                                                                                             | Type                                                                                                                                                                        | Default           |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| content                   | display content, can be overridden by `slot#content`                                                                                                    | ^[string]                                                                                                                                                                   | ''                |
-| placement                 | position of Tooltip                                                                                                                                     | ^[enum]`'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end' \| 'right' \| 'right-start' \| 'right-end'` | bottom            |
-| popper-options            | [popper.js](https://popper.js.org/docs/v2/) parameters                                                                                                  | ^[object]refer to [popper.js](https://popper.js.org/docs/v2/) doc                                                                                                           | {}                |
-| open-delay                | delay of appearance, in millisecond                                                                                                                     | ^[number]                                                                                                                                                                   | 0                 |
-| close-delay                | delay of disappear, in millisecond                                                                                                                      | ^[number]                                                                                                                                                                   | 200               |
-| trigger                   | How should the tooltip be triggered (to show)                                                                                                           | ^[enum]`'hover' \| 'click'`                                                                                                                     | hover             |
-| manual                   | 是否开启手动触发模式                                                                                                           | ^[boolean]`                                                                                                                     | false             |
-| transition                   | transition name                                                                                                         | ^[string]                                                                                                                     | ''             |
+| Name           | Description                                            | Type                                                                                                                                                                        | Default |
+| -------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| content        | display content, can be overridden by `slot#content`   | ^[string]                                                                                                                                                                   | ''      |
+| placement      | position of Tooltip                                    | ^[enum]`'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end' \| 'right' \| 'right-start' \| 'right-end'` | bottom  |
+| popper-options | [popper.js](https://popper.js.org/docs/v2/) parameters | ^[object]refer to [popper.js](https://popper.js.org/docs/v2/) doc                                                                                                           | {}      |
+| open-delay     | delay of appearance, in millisecond                    | ^[number]                                                                                                                                                                   | 0       |
+| close-delay    | delay of disappear, in millisecond                     | ^[number]                                                                                                                                                                   | 200     |
+| trigger        | How should the tooltip be triggered (to show)          | ^[enum]`'hover' \| 'click'`                                                                                                                                                 | hover   |
+| manual         | 是否开启手动触发模式                                   | ^[boolean]`                                                                                                                                                                 | false   |
+| transition     | transition name                                        | ^[string]                                                                                                                                                                   | ''      |
 
 ### Events
 
-| Name                 | Description                                                       | Type                                              |
-| -------------------- | ----------------------------------------------------------------- | ------------------------------------------------- |
-| visible-change                 | 当 tooltip 展示/隐藏时被触发                                              | `boolean` |
-| click-outside                 | 当点击到 Tooltip 外侧区域时被触发                                             | `boolean` |
+| Name           | Description                       | Type      |
+| -------------- | --------------------------------- | --------- |
+| visible-change | 当 tooltip 展示/隐藏时被触发      | `boolean` |
+| click-outside  | 当点击到 Tooltip 外侧区域时被触发 | `boolean` |
 
 ### Slots
 
@@ -66,7 +66,7 @@
 
 ### Exposes
 
-| Name                 | Description                                                       | Type                                              |
-| -------------------- | ----------------------------------------------------------------- | ------------------------------------------------- |
-| show                 | expose show function                                              | ^[Function]`(event?: Event \| undefined) => void` |
-| hide                 | expose hide function                                              | ^[Function]`(event?: Event \| undefined) => void` |
+| Name | Description          | Type                                              |
+| ---- | -------------------- | ------------------------------------------------- |
+| show | expose show function | ^[Function]`(event?: Event \| undefined) => void` |
+| hide | expose hide function | ^[Function]`(event?: Event \| undefined) => void` |
