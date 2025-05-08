@@ -70,7 +70,7 @@ If you are using Volar, please specify the global component type in `tsconfig.js
 ```json
 {
   "compilerOptions": {
-    // ...
+    //......
     "types": ["v-element/global"]
   }
 }
