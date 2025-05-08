@@ -31,6 +31,7 @@ export default defineConfig({
       {
         text: 'V Element 组件列表',
         items: [
+          { text: '安装与使用', link: '/get-started.md' },
           { text: 'Button 按钮', link: '/components/button' },
           { text: 'Alert 警告', link: '/components/alert' },
           { text: 'Collapse 折叠面板', link: '/components/collapse' },

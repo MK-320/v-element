@@ -8,17 +8,17 @@ hero:
   tagline: 基于Vue3和TypeScript的仿ElementUI组件库
   actions:
     - theme: brand
-      text: 示例文档
-      link: /markdown-examples
+      text: 开始使用
+      link: /get-started
     - theme: alt
       text: 接口文档
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 指南
+    details: 帮助开发者快速上手入门使用组件库
+  - title: 组件
+    details: 使用组件 Demo 快速体验交互细节；使用前端框架封装的代码帮助工程师快速开发。
+  - title: 资源
+    details: 下载相关资源，用其快速搭建页面原型或高保真视觉稿，提升产品设计效率。
 ---
