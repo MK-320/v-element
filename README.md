@@ -1,11 +1,11 @@
-# V-Element
-This is an implementation of a component library similar to ElementUI-Plus based on Vue3 and TS, which has realized some of its components and can be used directly.<br>
+# 🟦V-Element
 
-这是一个基于Vue3和TS开发的仿ElementUI-Plus组件库的实现，实现了其中部分的组件，可以直接使用。
-<br>
-Official Npm Website:[@drgeek/v-element](https://www.npmjs.com/package/@drgeek/v-element)
+>This is an implementation of a component library similar to ElementUI-Plus based on Vue3 and TS, which has realized some of its components and can be used directly.<br>
+>✨️这是一个基于Vue3和TS开发的仿ElementUI-Plus组件库的实现，实现了其中部分的组件，可以直接使用。
+>
+>Official Npm Website:[@drgeek/v-element](https://www.npmjs.com/package/@drgeek/v-element)
 
-# Use your favorite package manager
+# 💖Use your favorite package manager📦
 (💖使用你喜欢的包管理器​📦)
 <br>
 We recommend that you install V-Element using a package manager such as NPM, Yarn or pnpm, and then you can use a bundler like Vite or webpack.<br>
@@ -27,7 +27,7 @@ yarn add @drgeek/v-element --save
 ```
 # Quick Start 🔥开始使用
 ## Usage📖用法
-### Full Import(全局引入)
+### 🥇Full Import(全局引入)
 
 Global import will import all components and register them as global components, which can be directly used. It needs to be imported in the `main.ts` file. 
 However, the size of the package will be quite large. If you don't care much about the size of the packed files, then using the full import option will be more convenient.
@@ -46,7 +46,8 @@ const app = createApp(App)
 app.use(VElement)
 app.mount('#app')
 ```
-After that, it can be directly used in a certain file without the need for re-introduction. For example, the Button component can be directly used in `App.vue`.
+After that, it can be directly used in a certain file without the need for re-introduction. 
+🌰For example, the Button component can be directly used in `App.vue`.
 
 之后在某个文件中可以直接使用，不需要再次引入，比如在`App.vue`中直接使用Button组件。
 ```vue
@@ -76,14 +77,14 @@ If you are using Volar, please specify the global component type in `tsconfig.js
 }
 ```
 
-### Manually import(按需引入)
+### 🥈Manually import(按需引入)
 V-Element offers an out-of-the-box Tree Shaking feature based on ES Module. 
 If you only need to use a certain component from v-element, then you can use the on-demand import method. Just import it in the component where you need to use it.
 
 V-Element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 如果您只是需要使用v-element其中的某个组件，那么您可以使用按需引入的方式，只需要在需要使用的组件中导入即可。
 <br>
-For example, in `App.vue`, the Button component is used.
+🌰For example, in `App.vue`, the Button component is used.
 比如在`App.vue` 中使用Button组件
 ```vue
 <template>
@@ -97,6 +98,14 @@ For example, in `App.vue`, the Button component is used.
 </script>
 ```
 
+# ☕️支持本项目
+✨️如果您喜欢本项目，请给本项目点一个star，谢谢！
+🎉️如果您有好的建议或者想要贡献代码，欢迎提交issue或者pull request！
 
+
+![支持作者](赞赏码.jpg)
+
+# License
+[MIT](https://github.com/MK-320/v-element/blob/main/LICENSE) License © 2025-PRESENT [Drgeek](https://github.com/MK-320)
 
 
