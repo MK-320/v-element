@@ -99,13 +99,13 @@ V-Element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 ```
 
 # ☕️支持本项目
-✨️如果您喜欢本项目，请给本项目点一个star，谢谢！
+✨️如果您喜欢本项目，请给本项目点一个star，谢谢！<br>
 🎉️如果您有好的建议或者想要贡献代码，欢迎提交issue或者pull request！
 
 
 
 <img src="赞赏码.jpg" alt="支持作者" style="width:400px;"/>
 
-# License
+# 📑License
 [MIT](https://github.com/MK-320/v-element/blob/main/LICENSE) License © 2025-PRESENT [Drgeek](https://github.com/MK-320)
 
