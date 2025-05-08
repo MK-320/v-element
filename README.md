@@ -67,7 +67,7 @@ After that, it can be directly used in a certain file without the need for re-in
 If you are using Volar, please specify the global component type in `tsconfig.json` through the compilerOptions.type option.
 如果您使用 Volar，请在 `tsconfig.json` 中通过 compilerOptions.type 指定全局组件类型。
 
-```json
+```js
 {
   "compilerOptions": {
     //Other configuration details
