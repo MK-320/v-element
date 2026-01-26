@@ -14,6 +14,7 @@ export const createMessage = (props: CreateMessageProps) => {
     if (idx === -1) return
     instances.splice(idx, 1)
     render(null, container)
+    container.remove()
   }
   // 手动调用删除，其实就是手动的调整组件中 visible 的值
   // visible 是通过 expose 传出来的
@@ -50,7 +51,7 @@ export const getLastInstance = () => {
 }
 export const getLastBottomOffset = (id: string) => {
   const idx = instances.findIndex((instance) => instance.id === id)
-  console.log('idx', id, idx, instances.length)
+  //console.log('idx', id, idx, instances.length)
   if (idx <= 0) {
     return 0
   } else {
