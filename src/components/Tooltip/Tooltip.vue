@@ -50,12 +50,14 @@ let events: Record<string, any> = reactive({});
 let outerEvents: Record<string, any> = reactive({});
 
 const open = () => {
+  if (props.disabled) return;
   // openTimes++
   //console.log("输出openTimes：", openTimes);
   isOpen.value = true;
   emits("visible-change", true);
 };
 const close = () => {
+  if (props.disabled) return;
   //closeTimes++
   //console.log("输出closeTimes：", closeTimes);
   isOpen.value = false;
@@ -66,14 +68,17 @@ const openDebounce = debounce(open, props.openDelay);
 const closeDebounce = debounce(close, props.closeDelay);
 
 const openFinal = () => {
+  if (props.disabled) return;
   closeDebounce.cancel();
   openDebounce();
 };
 const closeFinal = () => {
+  if (props.disabled) return;
   openDebounce.cancel();
   closeDebounce();
 };
 const togglePopper = () => {
+  if (props.disabled) return;
   if (isOpen.value) {
     closeFinal();
   } else {
@@ -126,6 +131,17 @@ watch(
       events = {};
       outerEvents = {};
       attachEvent();
+    }
+  }
+);
+watch(
+  () => props.disabled,
+  (isDisabled) => {
+    if (isDisabled && isOpen.value) {
+      // 立即关闭且不触发 visible-change（保持“禁用”语义）
+      openDebounce.cancel();
+      closeDebounce.cancel();
+      isOpen.value = false;
     }
   }
 );
