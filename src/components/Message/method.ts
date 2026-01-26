@@ -61,7 +61,8 @@ export const getLastBottomOffset = (id: string) => {
 }
 
 export const closeAll = () => {
-  instances.forEach((instance) => {
+  // 复制数组再遍历，避免遍历时修改原数组
+  [...instances].forEach((instance) => {
     instance.destroy()
   })
 }

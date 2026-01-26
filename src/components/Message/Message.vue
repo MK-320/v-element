@@ -29,9 +29,9 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, toRefs } from "vue";
 import type { MessageProps } from "./types";
-import RenderVNode from "../Common/RenderVNode.ts";
+import RenderVNode from "../Common/RenderVNode";
 import Icon from "../Icon/icon.vue";
 import { getLastBottomOffset } from "./method";
 import useEventListener from "../../hooks/useEventListener";
@@ -41,6 +41,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   offset: 20,
   transitionName: "fade-up",
 });
+const { type, showClose, transitionName, message } = toRefs(props);
 const visible = ref(false);
 const messageRef = ref<HTMLDivElement>();
 // const instance = getCurrentInstance()

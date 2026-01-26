@@ -8,10 +8,14 @@ export default function useEventListener(
   handler: (e: Event) => any,
 ) {
   if (isRef(target)) {
-    watch(target, (value, oldValue) => {
-      oldValue?.removeEventListener(event, handler)
-      value?.addEventListener(event, handler)
-    })
+    watch(
+      target,
+      (value, oldValue) => {
+        oldValue?.removeEventListener(event, handler)
+        value?.addEventListener(event, handler)
+      },
+      { immediate: true },
+    )
   } else {
     onMounted(() => {
       target.addEventListener(event, handler)

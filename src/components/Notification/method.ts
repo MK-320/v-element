@@ -10,15 +10,16 @@ export const createNotification = (props: CreateNotificationProps) => {
   const container = document.createElement('div')
   const destroy = () => {
     // 删除数组中的实例
-    const idx = instances.findIndex(instance => instance.id === id)
+    const idx = instances.findIndex((instance) => instance.id === id)
     if (idx === -1) return
     instances.splice(idx, 1)
     render(null, container)
+    container.remove()
   }
   // 手动调用删除，其实就是手动的调整组件中visible的值
   // visible 是通过expose传出来的
   const manualDestroy = () => {
-    const instance = instances.find(instance => instance.id === id)
+    const instance = instances.find((instance) => instance.id === id)
     if (instance) {
       instance.vm.exposed!.visible.value = false
     }
@@ -27,7 +28,7 @@ export const createNotification = (props: CreateNotificationProps) => {
     ...props,
     id,
     zIndex: nextZIndex(),
-    onDestroy: destroy
+    onDestroy: destroy,
   }
   const vnode = h(NotificationConstructor, newProps)
   render(vnode, container)
@@ -39,7 +40,7 @@ export const createNotification = (props: CreateNotificationProps) => {
     vnode,
     vm,
     props: newProps,
-    destroy: manualDestroy
+    destroy: manualDestroy,
   }
   instances.push(instance)
   return instance
@@ -49,8 +50,8 @@ export const getLastInstance = () => {
   return instances.at(-1)
 }
 export const getLastBottomOffset = (id: string) => {
-  const idx = instances.findIndex(instance => instance.id === id)
-  console.log('idx', id, idx, instances.length)
+  const idx = instances.findIndex((instance) => instance.id === id)
+  //console.log('idx', id, idx, instances.length)
   if (idx <= 0) {
     return 0
   } else {
@@ -60,7 +61,7 @@ export const getLastBottomOffset = (id: string) => {
 }
 
 export const closeAll = () => {
-  instances.forEach(instance => {
+  [...instances].forEach((instance) => {
     instance.destroy()
   })
 }

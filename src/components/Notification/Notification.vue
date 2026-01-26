@@ -23,13 +23,13 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, toRefs } from 'vue'
 import type { NotificationProps } from './types'
 import { getLastBottomOffset } from './method'
 import RenderVnode from '../Common/RenderVNode'
 import Icon from '../Icon/icon.vue'
 import useEventListener from '../../hooks/useEventListener'
-import { typeIconNameMap } from '@/utils.ts'
+import { typeIconNameMap } from '@/utils'
 const props = withDefaults(defineProps<NotificationProps>(), {
   type: 'info',
   duration: 3000,
@@ -37,6 +37,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   transitionName: 'fade',
   showClose: true
 })
+const { type, showClose, title, message } = toRefs(props)
 const visible = ref(false)
 const notifyRef = ref<HTMLDivElement>()
 const iconName = computed(() => {

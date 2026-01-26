@@ -12,7 +12,7 @@
       <slot />
       <!--这里的插槽会替换掉Tooltip组件名叫content的插槽的内容 -->
       <template #content>
-        <ul cl ass="vm-dropdown__menu">
+        <ul class="vm-dropdown__menu">
           <template v-for="item in menuOptions" :key="item.key">
             <li v-if="item.divided" role="separator" class="dropdown-placeholder"></li>
             <li

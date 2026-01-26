@@ -16,7 +16,6 @@
       <Input
         v-model="states.inputValue"
         :disabled="disabled"
-        s
         :placeholder="filteredPlaceholder"
         ref="inputRef"
         :readonly="!filterable || !isDropdownShown"
@@ -34,7 +33,7 @@
           <Icon
             v-else
             icon="angle-down"
-            class="header-angsle"
+            class="header-angle"
             :class="{ 'is-active': isDropdownShown }"
           />
         </template>
@@ -51,7 +50,7 @@
           no matching data
         </div>
         <ul class="vm-select__menu" v-else>
-          <template v-for="(item, index) in filteredOptions" :keys="index">
+          <template v-for="(item, index) in filteredOptions" :key="index">
             <li
               class="vm-select__menu-item"
               :class="{

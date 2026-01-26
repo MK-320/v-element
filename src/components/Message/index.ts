@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 import Message from '@/components/Message/Message.vue'
-import { createMessage, closeAll } from '@/components/Message/method.ts'
+import { createMessage, closeAll } from '@/components/Message/method'
 Message.install = (app: App) => {
   app.component(Message.name || 'v-message', Message)
 }
