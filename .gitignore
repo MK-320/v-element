@@ -26,5 +26,15 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+.cursor/
+.cursorrc
+.settings/
 
 *.tsbuildinfo
+
+# Claude Code
+.claude/
+
+# VitePress
+docs/.vitepress/cache
+docs/.vitepress/dist

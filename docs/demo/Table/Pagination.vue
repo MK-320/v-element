@@ -1,7 +1,7 @@
 <template>
-  <Table 
-    :data="tableData" 
-    :columns="columns" 
+  <Table
+    :data="tableData"
+    :columns="columns"
     border
     :pagination="{ pageSize: 3, currentPage: 1 }"
   />
@@ -12,18 +12,22 @@ import { ref } from 'vue'
 import Table from '@/components/Table/Table.vue'
 
 const columns = ref([
-  { title: '姓名', key: 'name' },
-  { title: '年龄', key: 'age' },
-  { title: '地址', key: 'address' }
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100 },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '入职日期', key: 'date', width: 120 },
+  { title: '状态', key: 'status', width: 80 }
 ])
 
 const tableData = ref([
-  { name: '张三', age: 25, address: '北京市朝阳区' },
-  { name: '李四', age: 30, address: '上海市浦东新区' },
-  { name: '王五', age: 28, address: '广州市天河区' },
-  { name: '赵六', age: 22, address: '深圳市南山区' },
-  { name: '钱七', age: 35, address: '杭州市西湖区' },
-  { name: '孙八', age: 27, address: '南京市鼓楼区' },
-  { name: '周九', age: 31, address: '成都市锦江区' }
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', city: '北京', date: '2022-01-15', status: '在职' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', city: '上海', date: '2021-06-20', status: '在职' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', city: '广州', date: '2023-03-10', status: '在职' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', city: '深圳', date: '2024-01-05', status: '实习' },
+  { id: '1005', name: '钱七', dept: '运营部', role: '运营总监', city: '杭州', date: '2020-11-30', status: '在职' },
+  { id: '1006', name: '孙八', dept: '财务部', role: '财务经理', city: '南京', date: '2022-08-15', status: '在职' },
+  { id: '1007', name: '周九', dept: '人事部', role: '人事专员', city: '成都', date: '2023-05-20', status: '实习' }
 ])
 </script>

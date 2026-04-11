@@ -1,64 +1,90 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+<template>
+  <div class="form-wrapper">
+    <Form :model="form" :rules="rules" ref="formRef">
+      <FormItem label="密码" prop="password">
+        <Input v-model="form.password" type="password" placeholder="请输入密码" />
+      </FormItem>
+      <FormItem label="确认密码" prop="confirmPassword">
+        <Input v-model="form.confirmPassword" type="password" placeholder="请再次输入密码" />
+      </FormItem>
+      <FormItem label="昵称" prop="nickname">
+        <Input v-model="form.nickname" placeholder="请输入昵称" />
+      </FormItem>
+      <FormItem>
+        <Button type="primary" @click.prevent="handleSubmit">注 册</Button>
+        <Button @click.prevent="handleReset">重 置</Button>
+      </FormItem>
+    </Form>
+  </div>
+</template>
+
+<script setup lang="ts">
 import { reactive, ref } from 'vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import Input from '@/components/Input/Input.vue'
 import Button from '@/components/Button/Button.vue'
-const model = reactive({
-  email: '',
-  password: '',
-  confirmPwd: ''
-})
-const rules = {
-  // name: [{ type: 'string', required: true, trigger: 'blur' }, { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },],
-  email: [{ type: 'email', required: true, trigger: 'blur' }],
-  password: [{ type: 'string', required: true, trigger: 'blur' }, { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' } ],
-  confirmPwd: [{ type: 'string', required: true, trigger: 'blur' }, {  validator: (rule, value) => value === model.password, trigger: 'blur', message: '两个密码必须一致' } ],
-}
+
 const formRef = ref()
-const submit = async () => {
-  try {
-    await formRef.value.validate()
-    console.log('passed!')
-  } catch(e) {
-    console.log('the promise', e)
+
+const form = reactive({
+  password: '',
+  confirmPassword: '',
+  nickname: ''
+})
+
+// 自定义校验器：密码一致性
+const validateConfirm = (_rule: any, value: string, callback: (error?: Error) => void) => {
+  if (value === '') {
+    callback(new Error('请再次输入密码'))
+  } else if (value !== form.password) {
+    callback(new Error('两次输入的密码不一致'))
+  } else {
+    callback()
   }
 }
-const reset = () => {
+
+// 自定义校验器：昵称不能包含 admin
+const validateNickname = (_rule: any, value: string, callback: (error?: Error) => void) => {
+  if (value && value.includes('admin')) {
+    callback(new Error('昵称不能包含 admin'))
+  } else {
+    callback()
+  }
+}
+
+const rules = {
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, message: '密码不能少于 6 位', trigger: 'blur' }
+  ],
+  confirmPassword: [
+    { required: true, message: '请再次输入密码', trigger: 'blur' },
+    { validator: validateConfirm, trigger: 'blur' }
+  ],
+  nickname: [
+    { required: true, message: '请输入昵称', trigger: 'blur' },
+    { min: 2, max: 12, message: '昵称长度为 2-12 个字符', trigger: 'blur' },
+    { validator: validateNickname, trigger: 'blur' }
+  ]
+}
+
+const handleSubmit = async () => {
+  try {
+    await formRef.value.validate()
+    console.log('注册成功', form)
+  } catch (e) {
+    console.log('校验失败', e)
+  }
+}
+
+const handleReset = () => {
   formRef.value.resetFields()
 }
 </script>
 
-<template>
-<div>
-  <Form :model="model" :rules="rules" ref="formRef">
-    <!-- <FormItem prop="name" label="enter your name" #default="{ validate }">
-      <input v-model="model.name" @blur="validate('blur')" @input="validate('input')"/>
-    </FormItem> -->
-    <FormItem prop="email" label="the email">
-      <Input v-model="model.email" />
-    </FormItem>
-    <FormItem prop="password" label="the password">
-      <Input v-model="model.password" type="password" />
-    </FormItem>
-    <FormItem prop="confirmPwd" label="confirm password">
-      <Input v-model="model.confirmPwd" type="password" />
-    </FormItem>
-    <FormItem>
-      <Button @click.prevent="submit" type="primary">Submit</Button>
-      <Button @click.prevent="reset">Reset</Button>
-    </FormItem>
-  </Form>
-
-  <p>
-    form value:
-    <pre>{{model}}</pre>
-  </p>
-</div>
-</template>
-
-<style>
-
+<style scoped>
+.form-wrapper {
+  width: 400px;
+}
 </style>

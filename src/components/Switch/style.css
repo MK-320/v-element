@@ -13,10 +13,15 @@
   height: 32px;
   .vm-switch__input {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 0;
     height: 0;
     opacity: 0;
     margin: 0;
+    pointer-events: none;
+    caret-color: transparent;
+    outline: none;
     &:focus-visible {
       & ~ .vm-switch__core { /* ~ 是兄弟选择器并且是之后的匹配的元素 */
         outline: 2px solid var(--vm-switch-on-color);
