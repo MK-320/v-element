@@ -582,7 +582,7 @@ const bodyCellStyle = (row: Record<string, any>, column: InnerColumn, rowIndex: 
 watch(
   () => props.data,
   (newData) => {
-    if (import.meta.env.DEV && !Array.isArray(newData)) {
+    if (!Array.isArray(newData)) {
       console.warn('[Table] data prop should be an array')
     }
   },
@@ -592,7 +592,7 @@ watch(
 watch(
   () => props.columns,
   (newColumns) => {
-    if (import.meta.env.DEV && !Array.isArray(newColumns)) {
+    if (!Array.isArray(newColumns)) {
       console.warn('[Table] columns prop should be an array')
     }
   },

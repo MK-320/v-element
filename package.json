@@ -1,6 +1,6 @@
 {
   "name": "@drgeek/v-element",
-  "version": "1.0.10",
+  "version": "1.1.1",
   "description": "Vue3 components library",
   "type": "module",
   "author": "Yingquan Mu",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/MK-320/v-element/"
+    "url": "git+https://github.com/MK-320/v-element.git"
   },
   "homepage": "https://myqwb.xyz/",
   "files": [
@@ -27,9 +27,9 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/es/v-element.js",
-      "require": "./dist/umd/v-element.umd.cjs",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/umd/v-element.umd.cjs"
     },
     "./dist/": {
       "import": "./dist/",
