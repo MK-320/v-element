@@ -14,19 +14,19 @@ describe('Tooltip.vue', () => {
 
   test('basic tooltip', async () => {
     const onVisibleChange = vi.fn()
-    const wrapper = mount(
-      () => (
-        <div>
-          <div id="outside"></div>
-          <Tooltip content="hello tooltip" trigger="click" onVisible-change={onVisibleChange}>
-            <button id="trigger">Trigger</button>
-          </Tooltip>
-        </div>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        content: 'hello tooltip',
+        trigger: 'click',
       },
-    )
+      attrs: {
+        'onVisible-change': onVisibleChange,
+      },
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+      },
+      attachTo: document.body,
+    })
 
     // 静态测试
     const triggerArea = wrapper.find('#trigger')
@@ -41,24 +41,31 @@ describe('Tooltip.vue', () => {
     expect(onVisibleChange).toHaveBeenCalledWith(true)
 
     // 测试点击外部关闭
-    wrapper.get('#outside').trigger('click')
+    const outside = document.createElement('div')
+    outside.id = 'outside'
+    document.body.appendChild(outside)
+    outside.click()
     await vi.runAllTimers()
     expect(wrapper.find('.vm-tooltip__popper').exists()).toBeFalsy()
     expect(onVisibleChange).toHaveBeenLastCalledWith(false)
+    document.body.removeChild(outside)
   })
 
   test('hover trigger', async () => {
     const onVisibleChange = vi.fn()
-    const wrapper = mount(
-      () => (
-        <Tooltip content="hover tooltip" trigger="hover" onVisible-change={onVisibleChange}>
-          <button id="trigger">Trigger</button>
-        </Tooltip>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        content: 'hover tooltip',
+        trigger: 'hover',
       },
-    )
+      attrs: {
+        'onVisible-change': onVisibleChange,
+      },
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+      },
+      attachTo: document.body,
+    })
 
     // 鼠标移入显示
     await wrapper.find('#trigger').trigger('mouseenter')
@@ -74,16 +81,18 @@ describe('Tooltip.vue', () => {
   })
 
   test('manual trigger mode', async () => {
-    const wrapper = mount(
-      () => (
-        <Tooltip content="manual tooltip" trigger="click" manual v-model:visible={true}>
-          <button id="trigger">Trigger</button>
-        </Tooltip>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        content: 'manual tooltip',
+        trigger: 'click',
+        manual: true,
+        visible: true,
       },
-    )
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+      },
+      attachTo: document.body,
+    })
 
     // 初始应该显示
     expect(wrapper.find('.vm-tooltip__popper').exists()).toBeTruthy()
@@ -95,16 +104,20 @@ describe('Tooltip.vue', () => {
 
   test('disabled tooltip', async () => {
     const onVisibleChange = vi.fn()
-    const wrapper = mount(
-      () => (
-        <Tooltip content="disabled tooltip" manual disabled onVisible-change={onVisibleChange}>
-          <button id="trigger">Trigger</button>
-        </Tooltip>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        content: 'disabled tooltip',
+        manual: true,
+        disabled: true,
       },
-    )
+      attrs: {
+        'onVisible-change': onVisibleChange,
+      },
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+      },
+      attachTo: document.body,
+    })
 
     // 点击不应显示
     await wrapper.find('#trigger').trigger('click')
@@ -114,18 +127,16 @@ describe('Tooltip.vue', () => {
   })
 
   test('custom content slot', async () => {
-    const wrapper = mount(
-      () => (
-        <Tooltip trigger="click" v-slots={{
-          content: () => <span class="custom-content">Custom Content</span>
-        }}>
-          <button id="trigger">Trigger</button>
-        </Tooltip>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        trigger: 'click',
       },
-    )
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+        content: () => <span class="custom-content">Custom Content</span>,
+      },
+      attachTo: document.body,
+    })
 
     // 点击显示自定义内容
     await wrapper.find('#trigger').trigger('click')
@@ -135,16 +146,18 @@ describe('Tooltip.vue', () => {
   })
 
   test('delay show/hide', async () => {
-    const wrapper = mount(
-      () => (
-        <Tooltip content="delayed tooltip" trigger="hover" open-delay={200} close-delay={300}>
-          <button id="trigger">Trigger</button>
-        </Tooltip>
-      ),
-      {
-        attachTo: document.body,
+    const wrapper = mount(Tooltip, {
+      props: {
+        content: 'delayed tooltip',
+        trigger: 'hover',
+        openDelay: 200,
+        closeDelay: 300,
       },
-    )
+      slots: {
+        default: () => <button id="trigger">Trigger</button>,
+      },
+      attachTo: document.body,
+    })
 
     // 鼠标移入，未到延迟时间
     await wrapper.find('#trigger').trigger('mouseenter')

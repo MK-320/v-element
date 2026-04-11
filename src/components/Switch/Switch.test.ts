@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
 import Switch from './Switch.vue'
 import type { SwitchValueType } from './types'
 
@@ -56,7 +57,7 @@ describe('Switch.vue', () => {
     expect(wrapper.props('modelValue')).toBe(false)
   })
 
-  it('active/inactive text', () => {
+  it('active/inactive text', async () => {
     const wrapper = mount(Switch, {
       props: {
         modelValue: false,
@@ -68,7 +69,8 @@ describe('Switch.vue', () => {
     const text = wrapper.find('.vm-switch__core-inner-text')
     expect(text.text()).toBe('OFF')
 
-    wrapper.setProps({ modelValue: true })
+    await wrapper.setProps({ modelValue: true })
+    await nextTick()
     expect(text.text()).toBe('ON')
   })
 
@@ -78,10 +80,12 @@ describe('Switch.vue', () => {
         modelValue: 'off',
         activeValue: 'on',
         inactiveValue: 'off',
+        'onUpdate:modelValue': (e: SwitchValueType) => wrapper.setProps({ modelValue: e }),
       },
     })
 
     await wrapper.trigger('click')
+    await nextTick()
     expect(wrapper.props('modelValue')).toBe('on')
   })
 
@@ -89,11 +93,13 @@ describe('Switch.vue', () => {
     const wrapper = mount(Switch, {
       props: {
         modelValue: false,
+        'onUpdate:modelValue': (e: SwitchValueType) => wrapper.setProps({ modelValue: e }),
       },
     })
 
     const input = wrapper.find('.vm-switch__input')
     await input.trigger('keydown.enter')
+    await nextTick()
     expect(wrapper.props('modelValue')).toBe(true)
   })
 })

@@ -50,6 +50,6 @@ export default defineConfig({
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/MK-320/v-element' }],
   },
-  //outDir: '../public',
-  //base: '/v-element/',
+  outDir: '../public',
+  base: '/v-element/',
 })

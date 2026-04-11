@@ -3,6 +3,7 @@
     [`vm-input--${type}`]: type,
     [`vm-input--${size}`]: size,
     'is-disabled': disabled,
+    'is-readonly': readonly,
     'is-prepend': $slots.prepend,
     'is-append': $slots.append,
     'is-prefix': $slots.prefix,

@@ -38,3 +38,4 @@ coverage
 # VitePress
 docs/.vitepress/cache
 docs/.vitepress/dist
+public/

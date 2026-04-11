@@ -12,8 +12,9 @@ import Alert from "./components/Alert/Alert.vue";
 import type { MenuOption } from "./components/Dropdown/types";
 import type { TooltipInstance } from "./components/Tooltip/types";
 import { createMessage } from "./components/Message/method";
-import Table from "./components/Table";
-import type { TableColumn } from "./components/Table/type";
+// 测试 npm 上的 Table 组件
+import { Table } from "@drgeek/v-element";
+import type { TableColumn } from "@drgeek/v-element";
 
 const buttonRef = ref<ButtonInstance | null>(null);
 const triggerRef = ref<any>("click");
@@ -25,208 +26,197 @@ const options: MenuOption[] = [
   { key: "3", label: "Option 3", divided: true },
   { key: "4", label: "Option 4" },
 ];
+// ============ Table 组件数据（来自文档示例）============
 // 基础数据
-const baseData = ref([
-  {
-    id: 1,
-    name: "王小虎",
-    age: 28,
-    address: "上海市浦东新区世纪大道 1 号",
-    status: "online",
-    province: "上海",
-    city: "上海",
-    zip: "200120",
-  },
-  {
-    id: 2,
-    name: "李思思",
-    age: 31,
-    address: "北京市朝阳区建国路 88 号",
-    status: "busy",
-    province: "北京",
-    city: "北京",
-    zip: "100020",
-  },
-  {
-    id: 3,
-    name: "赵六",
-    age: 24,
-    address: "深圳市南山区科技园",
-    status: "offline",
-    province: "广东",
-    city: "深圳",
-    zip: "518000",
-  },
-  {
-    id: 4,
-    name: "周七",
-    age: 36,
-    address: "杭州市西湖区龙井路 2 号",
-    status: "online",
-    province: "浙江",
-    city: "杭州",
-    zip: "310000",
-  },
-  {
-    id: 5,
-    name: "钱八",
-    age: 29,
-    address: "成都市武侯区人民南路 3 段 1 号",
-    status: "busy",
-    province: "四川",
-    city: "成都",
-    zip: "610041",
-  },
-]);
+const tableData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', city: '北京', date: '2022-01-15', status: '在职' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', city: '上海', date: '2021-06-20', status: '在职' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', city: '广州', date: '2023-03-10', status: '在职' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', city: '深圳', date: '2024-01-05', status: '实习' }
+])
 
 // 1. 基础表格
 const basicColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200 },
-];
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100 },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '入职日期', key: 'date', width: 120 },
+  { title: '状态', key: 'status', width: 80 }
+]
 
-// 2. 带斑马纹表格
-const stripeColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200 },
-];
+// 2. 带边框
+const borderColumns: TableColumn[] = [...basicColumns]
 
-// 3. 带边框表格
-const borderColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200 },
-];
+// 3. 斑马纹
+const stripeColumns: TableColumn[] = [...basicColumns]
 
-// 4. 带状态表格
-const statusColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "状态", key: "status", slot: "status", width: 120, align: "center" },
-  { title: "地址", key: "address", width: 200 },
-];
-const statusColors: Record<string, string> = {
-  online: "#67c23a",
-  busy: "#e6a23c",
-  offline: "#909399",
-};
+// 4. 排序
+const sortColumns: TableColumn[] = [
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100, sortable: true },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '年龄', key: 'age', width: 80, sortable: true, align: 'center' },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '入职日期', key: 'date', width: 120 }
+]
+const sortData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', age: 25, city: '北京', date: '2022-01-15' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', age: 30, city: '上海', date: '2021-06-20' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', age: 28, city: '广州', date: '2023-03-10' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', age: 22, city: '深圳', date: '2024-01-05' },
+  { id: '1005', name: '钱七', dept: '运营部', role: '运营总监', age: 35, city: '杭州', date: '2020-11-30' }
+])
 
-// 5. 显示溢出工具提示的表格
-const tooltipColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200, ellipsis: true, tooltip: true },
-];
-const tooltipData = ref([
-  {
-    id: 1,
-    name: "王小虎",
-    age: 28,
-    address: "上海市浦东新区世纪大道 1 号世纪汇广场很长很长的地址内容",
-  },
-  { id: 2, name: "李思思", age: 31, address: "北京市朝阳区建国路 88 号SOHO现代城" },
-  { id: 3, name: "赵六", age: 24, address: "深圳市南山区科技园南区深圳湾科技生态园" },
-]);
+// 5. 行选择
+const selectionColumns: TableColumn[] = [
+  { type: 'selection', width: 50 },
+  ...basicColumns
+]
 
-// 6. 固定表头
-const fixedHeaderColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200 },
-];
-const fixedHeaderData = ref([
-  ...baseData.value,
-  {
-    id: 6,
-    name: "郑九",
-    age: 41,
-    address: "武汉市光谷大道",
-    status: "offline",
-    province: "湖北",
-    city: "武汉",
-    zip: "430000",
-  },
-  {
-    id: 7,
-    name: "孙十",
-    age: 33,
-    address: "广州市天河区体育东路",
-    status: "online",
-    province: "广东",
-    city: "广州",
-    zip: "510630",
-  },
-  {
-    id: 8,
-    name: "魏十一",
-    age: 27,
-    address: "南京市秦淮区中山东路",
-    status: "offline",
-    province: "江苏",
-    city: "南京",
-    zip: "210000",
-  },
-  {
-    id: 9,
-    name: "贾十二",
-    age: 35,
-    address: "重庆市渝中区解放碑步行街",
-    status: "online",
-    province: "重庆",
-    city: "重庆",
-    zip: "400000",
-  },
-]);
+// 6. 索引列
+const indexColumns: TableColumn[] = [
+  { type: 'index', title: '序号', width: 60 },
+  ...basicColumns
+]
 
-// 7. 固定列
-const fixedColumnColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120, fixed: "left" },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "省份", key: "province", width: 120 },
-  { title: "城市", key: "city", width: 120 },
-  { title: "地址", key: "address", width: 200 },
-  { title: "邮编", key: "zip", width: 120, fixed: "right" },
-];
+// 7. 行展开
+const expandColumns: TableColumn[] = [
+  { type: 'expand', expandSlot: 'expand', width: 60 },
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100 },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '状态', key: 'status', width: 80 }
+]
+const expandData = ref([...tableData.value])
 
-// 8. 固定列和表头
-const fixedColumnHeaderColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120, fixed: "left" },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "省份", key: "province", width: 120 },
-  { title: "城市", key: "city", width: 120 },
-  { title: "地址", key: "address", width: 200 },
-  { title: "邮编", key: "zip", width: 120, fixed: "right" },
-];
+// 8. 分页
+const paginationColumns: TableColumn[] = [...basicColumns]
+const paginationData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', city: '北京', date: '2022-01-15', status: '在职' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', city: '上海', date: '2021-06-20', status: '在职' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', city: '广州', date: '2023-03-10', status: '在职' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', city: '深圳', date: '2024-01-05', status: '实习' },
+  { id: '1005', name: '钱七', dept: '运营部', role: '运营总监', city: '杭州', date: '2020-11-30', status: '在职' },
+  { id: '1006', name: '孙八', dept: '财务部', role: '财务经理', city: '南京', date: '2022-08-15', status: '在职' },
+  { id: '1007', name: '周九', dept: '人事部', role: '人事专员', city: '成都', date: '2023-05-20', status: '实习' }
+])
+const paginationConfig = ref({ pageSize: 3, currentPage: 1 })
 
-// 9. 流体高度
-const fluidHeightColumns: TableColumn[] = [
-  { title: "姓名", key: "name", width: 120 },
-  { title: "年龄", key: "age", width: 90 },
-  { title: "地址", key: "address", width: 200 },
-];
+// 9. 加载状态
+const loadingColumns: TableColumn[] = [...basicColumns]
 
-// 10. 多级表头
+// 10. 固定列
+const fixedColumns: TableColumn[] = [
+  { title: '工号', key: 'id', width: 80, fixed: 'left' },
+  { title: '姓名', key: 'name', width: 100, fixed: 'left' },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '省份', key: 'province', width: 100 },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '详细地址', key: 'address', width: 240 },
+  { title: '邮编', key: 'zip', width: 100 },
+  { title: '联系电话', key: 'phone', width: 130 },
+  { title: '邮箱', key: 'email', width: 220 },
+  { title: '入职日期', key: 'date', width: 120 },
+  { title: '状态', key: 'status', width: 80 },
+  { title: '操作', key: 'action', slot: 'action', width: 160, fixed: 'right', ellipsis: false }
+]
+const fixedData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', province: '北京市', city: '北京市', address: '朝阳区建国路88号SOHO现代城A座1201室', zip: '100022', phone: '13800138001', email: 'zhangsan@example-company.com', date: '2022-01-15', status: '在职' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', province: '上海市', city: '上海市', address: '浦东新区世纪大道100号环球金融中心B座802室', zip: '200120', phone: '13800138002', email: 'lisi@example-company.com', date: '2021-06-20', status: '在职' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', province: '广东省', city: '广州市', address: '天河区天河路123号太古汇写字楼18层', zip: '510620', phone: '13800138003', email: 'wangwu@example-company.com', date: '2023-03-10', status: '在职' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', province: '浙江省', city: '杭州市', address: '西湖区文一路88号浙江大学科技园', zip: '310012', phone: '13800138004', email: 'zhaoliu@example-company.com', date: '2024-01-05', status: '实习' }
+])
+
+// 11. 多级表头
 const multiHeaderColumns: TableColumn[] = [
   {
-    title: "用户信息",
-    key: "user",
+    title: '基本信息',
     children: [
-      { title: "姓名", key: "name", width: 120, sortable: true },
-      { title: "年龄", key: "age", width: 90, align: "right", sortable: true },
-    ],
+      { title: '工号', key: 'id', width: 80 },
+      { title: '姓名', key: 'name', width: 100 }
+    ]
   },
   {
-    title: "位置信息",
-    key: "location",
+    title: '职位信息',
     children: [
-      { title: "省份", key: "province", width: 120 },
-      { title: "城市", key: "city", width: 120 },
-      { title: "地址", key: "address", width: 200 },
-    ],
+      { title: '部门', key: 'dept', width: 120 },
+      { title: '职位', key: 'role', width: 120 },
+      { title: '城市', key: 'city', width: 100 }
+    ]
   },
-];
+  { title: '详细地址', key: 'address', width: 220 },
+  { title: '入职日期', key: 'date', width: 120 }
+]
+const multiHeaderData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', city: '北京', address: '北京市朝阳区建国路88号SOHO现代城', date: '2022-01-15' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', city: '上海', address: '上海市浦东新区世纪大道100号', date: '2021-06-20' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', city: '广州', address: '广州市天河区天河路123号太古汇', date: '2023-03-10' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', city: '深圳', address: '深圳市南山区科技路66号高新产业园', date: '2024-01-05' }
+])
+
+// 12. 自定义列模板
+const customColumns: TableColumn[] = [
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100 },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '邮箱', key: 'email', width: 220 },
+  { title: '公司地址', key: 'address', width: 260 },
+  { title: '操作', key: 'action', slot: 'action', width: 160, ellipsis: false }
+]
+const customData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', email: 'zhangsan.developer@example-company.com', address: '北京市朝阳区建国路88号SOHO现代城A座1201室' },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', email: 'lisi.product@example-company.com', address: '上海市浦东新区世纪大道100号上海环球金融中心B座802室' },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', email: 'wangwu.design@example-company.com', address: '广州市天河区天河路123号太古汇写字楼18层' },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', email: 'zhaoliu.marketing@example-company.com', address: '深圳市南山区科技路66号高新产业园3号楼5层' }
+])
+
+// 13. 单元格省略与 Tooltip
+const ellipsisColumns: TableColumn[] = [
+  { title: '工号', key: 'id', width: 80 },
+  { title: '姓名', key: 'name', width: 100 },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '邮箱', key: 'email', width: 180, ellipsis: true },
+  { title: '公司地址', key: 'address', width: 200, ellipsis: true, tooltip: true }
+]
+const ellipsisData = ref([...customData.value])
+
+// 14. 复杂示例
+const complexColumns: TableColumn[] = [
+  { type: 'selection', width: 50 },
+  { type: 'index', title: '序号', width: 60 },
+  { type: 'expand', expandSlot: 'expand', width: 60 },
+  { title: '工号', key: 'id', width: 80, fixed: 'left' },
+  { title: '姓名', key: 'name', width: 100, fixed: 'left', sortable: true },
+  { title: '部门', key: 'dept', width: 120 },
+  { title: '职位', key: 'role', width: 120 },
+  { title: '城市', key: 'city', width: 100 },
+  { title: '详细地址', key: 'address', width: 220, ellipsis: true },
+  { title: '入职日期', key: 'date', width: 120 },
+  { title: '年龄', key: 'age', width: 80, sortable: true, align: 'center' },
+  { title: '状态', key: 'status', slot: 'status', width: 100, align: 'center' },
+  { title: '操作', key: 'action', slot: 'action', width: 220, fixed: 'right', ellipsis: false }
+]
+const complexData = ref([
+  { id: '1001', name: '张三', dept: '技术部', role: '前端工程师', city: '北京', address: '北京市朝阳区建国路88号SOHO现代城A座1201室', date: '2022-01-15', age: 25, status: 1 },
+  { id: '1002', name: '李四', dept: '产品部', role: '产品经理', city: '上海', address: '上海市浦东新区世纪大道100号上海环球金融中心', date: '2021-06-20', age: 30, status: 2 },
+  { id: '1003', name: '王五', dept: '设计部', role: 'UI设计师', city: '广州', address: '广州市天河区天河路123号太古汇写字楼', date: '2023-03-10', age: 28, status: 1 },
+  { id: '1004', name: '赵六', dept: '市场部', role: '市场专员', city: '深圳', address: '深圳市南山区科技路66号高新产业园', date: '2024-01-05', age: 22, status: 3 },
+  { id: '1005', name: '钱七', dept: '运营部', role: '运营总监', city: '杭州', address: '杭州市西湖区文一路88号浙江大学科技园', date: '2020-11-30', age: 35, status: 2 },
+  { id: '1006', name: '孙八', dept: '财务部', role: '财务经理', city: '南京', address: '南京市鼓楼区中山北路100号鼓楼医院旁', date: '2022-08-15', age: 27, status: 1 }
+])
+const statusMap: Record<number, string> = { 1: '正常', 2: '休假中', 3: '离职' }
+
+const handleEdit = (row: any) => console.log('编辑', row)
+const handleDelete = (row: any) => console.log('删除', row)
+const handleView = (row: any) => console.log('查看', row)
 const openTooltip = () => {
   tooltipRef.value?.show();
 };
@@ -353,89 +343,129 @@ onMounted(() => {
     <!-- 1. 基础表格 -->
     <section class="demo-block">
       <h3>1. 基础表格</h3>
-      <Table :data="baseData" :columns="basicColumns" />
+      <Table :data="tableData" :columns="basicColumns" />
     </section>
 
-    <!-- 2. 带斑马纹表格 -->
+    <!-- 2. 带边框 -->
     <section class="demo-block">
-      <h3>2. 带斑马纹表格</h3>
-      <Table :data="baseData" :columns="stripeColumns" stripe />
+      <h3>2. 带边框</h3>
+      <Table :data="tableData" :columns="borderColumns" border />
     </section>
 
-    <!-- 3. 带边框表格 -->
+    <!-- 3. 斑马纹 -->
     <section class="demo-block">
-      <h3>3. 带边框表格</h3>
-      <Table :data="baseData" :columns="borderColumns" border />
+      <h3>3. 斑马纹</h3>
+      <Table :data="tableData" :columns="stripeColumns" stripe />
     </section>
 
-    <!-- 4. 带状态表格 -->
+    <!-- 4. 排序 -->
     <section class="demo-block">
-      <h3>4. 带状态表格</h3>
-      <Table :data="baseData" :columns="statusColumns" border>
-        <template #status="{ row }">
-          <span
-            :style="{
-              padding: '2px 6px',
-              borderRadius: '6px',
-              color: '#fff',
-              background: statusColors[row.status] || '#909399',
-            }"
-          >
-            {{ row.status }}
-          </span>
+      <h3>4. 排序</h3>
+      <Table :data="sortData" :columns="sortColumns" border />
+    </section>
+
+    <!-- 5. 行选择 -->
+    <section class="demo-block">
+      <h3>5. 行选择</h3>
+      <Table :data="tableData" :columns="selectionColumns" border />
+    </section>
+
+    <!-- 6. 索引列 -->
+    <section class="demo-block">
+      <h3>6. 索引列</h3>
+      <Table :data="tableData" :columns="indexColumns" border />
+    </section>
+
+    <!-- 7. 行展开 -->
+    <section class="demo-block">
+      <h3>7. 行展开</h3>
+      <Table :data="expandData" :columns="expandColumns" border>
+        <template #expand="{ row }">
+          <div style="padding: 16px;">
+            <p><strong>工号：</strong>{{ row.id }}</p>
+            <p><strong>姓名：</strong>{{ row.name }}</p>
+            <p><strong>部门：</strong>{{ row.dept }}</p>
+            <p><strong>职位：</strong>{{ row.role }}</p>
+          </div>
         </template>
       </Table>
     </section>
 
-    <!-- 5. 显示溢出工具提示的表格 -->
+    <!-- 8. 分页 -->
     <section class="demo-block">
-      <h3>5. 显示溢出工具提示的表格</h3>
-      <Table :data="tooltipData" :columns="tooltipColumns" border />
+      <h3>8. 分页</h3>
+      <Table :data="paginationData" :columns="paginationColumns" border :pagination="paginationConfig" />
     </section>
 
-    <!-- 6. 固定表头 -->
+    <!-- 9. 加载状态 -->
     <section class="demo-block">
-      <h3>6. 固定表头</h3>
-      <Table
-        :data="fixedHeaderData"
-        :columns="fixedHeaderColumns"
-        border
-        height="200px"
-      />
+      <h3>9. 加载状态</h3>
+      <Table :data="tableData" :columns="loadingColumns" border loading />
     </section>
 
-    <!-- 7. 固定列 -->
+    <!-- 10. 固定列 -->
     <section class="demo-block">
-      <h3>7. 固定列</h3>
-      <Table :data="baseData" :columns="fixedColumnColumns" border />
+      <h3>10. 固定列</h3>
+      <Table :data="fixedData" :columns="fixedColumns" border>
+        <template #action="{ row }">
+          <Button size="small" type="primary" @click="handleEdit(row)">编辑</Button>
+          <Button size="small" type="danger" @click="handleDelete(row)">删除</Button>
+        </template>
+      </Table>
     </section>
 
-    <!-- 8. 固定列和表头 -->
+    <!-- 11. 多级表头 -->
     <section class="demo-block">
-      <h3>8. 固定列和表头</h3>
-      <Table
-        :data="fixedHeaderData"
-        :columns="fixedColumnHeaderColumns"
-        border
-        height="200px"
-      />
+      <h3>11. 多级表头</h3>
+      <Table :data="multiHeaderData" :columns="multiHeaderColumns" border />
     </section>
 
-    <!-- 9. 流体高度 -->
+    <!-- 12. 自定义列模板 -->
     <section class="demo-block">
-      <h3>9. 流体高度</h3>
-      <Table
-        :data="fixedHeaderData"
-        :columns="fluidHeightColumns"
-        border
-        max-height="200px"
-      />
+      <h3>12. 自定义列模板</h3>
+      <Table :data="customData" :columns="customColumns" border>
+        <template #action="{ row }">
+          <Button size="small" type="primary" @click="handleEdit(row)">编辑</Button>
+          <Button size="small" type="danger" @click="handleDelete(row)">删除</Button>
+          <Button size="small" @click="handleView(row)">查看</Button>
+        </template>
+      </Table>
     </section>
 
-    <!-- 10. 多级表头 -->
+    <!-- 13. 单元格省略与 Tooltip -->
     <section class="demo-block">
-      <h3>10. 多级表头</h3>
-      <Table :data="baseData" :columns="multiHeaderColumns" border />
+      <h3>13. 单元格省略与 Tooltip</h3>
+      <Table :data="ellipsisData" :columns="ellipsisColumns" border />
+    </section>
+
+    <!-- 14. 复杂示例 -->
+    <section class="demo-block">
+      <h3>14. 复杂示例</h3>
+      <Table :data="complexData" :columns="complexColumns" border>
+        <template #expand="{ row }">
+          <div style="padding: 16px;">
+            <p><strong>工号：</strong>{{ row.id }}</p>
+            <p><strong>姓名：</strong>{{ row.name }}</p>
+            <p><strong>部门：</strong>{{ row.dept }}</p>
+            <p><strong>职位：</strong>{{ row.role }}</p>
+            <p><strong>城市：</strong>{{ row.city }}</p>
+            <p><strong>详细地址：</strong>{{ row.address }}</p>
+          </div>
+        </template>
+        <template #status="{ row }">
+          <span :style="{
+            padding: '2px 8px',
+            borderRadius: '4px',
+            background: row.status === 1 ? '#67C23A' : row.status === 2 ? '#E6A23C' : '#F56C6C',
+            color: '#fff'
+          }">{{ statusMap[row.status] || '未知' }}</span>
+        </template>
+        <template #action="{ row }">
+          <Button size="small" type="primary" @click="handleEdit(row)">编辑</Button>
+          <Button size="small" type="danger" @click="handleDelete(row)">删除</Button>
+          <Button size="small" @click="handleView(row)">查看</Button>
+        </template>
+      </Table>
     </section>
   </main>
 </template>
