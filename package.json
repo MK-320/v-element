@@ -1,6 +1,6 @@
 {
   "name": "@drgeek/v-element",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Vue3 components library",
   "type": "module",
   "author": "Yingquan Mu",
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/MK-320/v-element/"
   },
-  "homepage": "后期会加上",
+  "homepage": "https://myqwb.xyz/",
   "files": [
     "dist"
   ],
@@ -37,6 +37,7 @@
     }
   },
   "scripts": {
+    "test": "vitest run",
     "dev": "vite",
     "build": "npm run build-only && npm run move-style",
     "preview": "vite preview",

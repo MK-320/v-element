@@ -43,10 +43,13 @@ export default defineConfig({
           { text: 'Switch 开关', link: '/components/switch' },
           { text: 'Select 选择器', link: '/components/select' },
           { text: 'Form 表单', link: '/components/form' },
+          { text: 'Table 表格', link: '/components/table' },
         ],
       },
     ],
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/MK-320/v-element' }],
   },
+  //outDir: '../public',
+  //base: '/v-element/',
 })

@@ -1,7 +1,8 @@
+import type { App } from 'vue'
 import Alert from '@/components/Alert/Alert.vue'
 
-Alert.install = (app: any) => {
-  app.component(Alert.name, Alert)
+Alert.install = (app: App) => {
+  app.component(Alert.name || 'VmAlert', Alert)
 }
 
 export default Alert

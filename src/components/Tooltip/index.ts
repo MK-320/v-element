@@ -1,7 +1,8 @@
+import type { App } from 'vue'
 import Tooltip from '@/components/Tooltip/Tooltip.vue'
 
-Tooltip.install = (app: any) => {
-  app.component(Tooltip.name, Tooltip)
+Tooltip.install = (app: App) => {
+  app.component(Tooltip.name || 'VmTooltip', Tooltip)
 }
 
 export default Tooltip

@@ -1,0 +1,275 @@
+.vm-table-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.vm-table__container {
+  width: 100%;
+  overflow: auto;
+  border-radius: var(--vm-border-radius-base);
+}
+
+.vm-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--vm-bg-color);
+  font-size: var(--vm-font-size-base);
+  color: var(--vm-text-color-regular);
+  border-radius: var(--vm-border-radius-base);
+  overflow: hidden;
+}
+
+.vm-table th,
+.vm-table td {
+  padding: 12px 12px;
+  /* 默认（无边框模式）只保留较轻的横向分割线，避免和 border 模式看起来差不多 */
+  border-bottom: 1px solid var(--vm-border-color-extra-light);
+  box-sizing: border-box;
+}
+
+.vm-table th {
+  background-color: var(--vm-fill-color-light);
+  font-weight: var(--vm-font-weight-primary);
+  color: var(--vm-text-color-secondary);
+  text-align: left;
+  user-select: none;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.vm-table td {
+  color: var(--vm-text-color-regular);
+  line-height: 1.5;
+  vertical-align: middle;
+  background-color: var(--vm-bg-color);
+}
+
+.vm-table--border {
+  /* Element Plus：border 模式为更明显的网格边框 */
+  border: 1px solid var(--vm-border-color-lighter);
+}
+
+.vm-table--border th,
+.vm-table--border td {
+  border-right: 1px solid var(--vm-border-color-lighter);
+  border-bottom: 1px solid var(--vm-border-color-lighter);
+}
+
+.vm-table--border th:last-child,
+.vm-table--border td:last-child {
+  border-right: none;
+}
+
+.vm-table__th--align-left,
+.vm-table__td--align-left {
+  text-align: left;
+  padding-left: 12px;
+}
+
+.vm-table__th--align-center,
+.vm-table__td--align-center {
+  text-align: center;
+}
+
+.vm-table__th--align-right,
+.vm-table__td--align-right {
+  text-align: right;
+  padding-right: 12px;
+}
+
+.vm-table__cell {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vm-table__th--sortable {
+  cursor: pointer;
+  transition: all var(--vm-transition-duration-fast);
+}
+
+.vm-table__th--sortable:hover {
+  color: var(--vm-color-primary);
+  /* Element UI：hover 轻微强调 */
+  background-color: var(--vm-fill-color);
+}
+
+.vm-table__sort {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.vm-table__sort-icon {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.vm-table__sort-icon--up {
+  border-bottom-color: var(--vm-text-color-placeholder);
+  margin-bottom: 2px;
+}
+
+.vm-table__sort-icon--down {
+  border-top-color: var(--vm-text-color-placeholder);
+}
+
+.vm-table__sort--ascending .vm-table__sort-icon--up {
+  border-bottom-color: var(--vm-color-primary);
+}
+
+.vm-table__sort--descending .vm-table__sort-icon--down {
+  border-top-color: var(--vm-color-primary);
+}
+
+.vm-table__row--stripe {
+  /* Element UI: #fafafa */
+  background-color: var(--vm-fill-color-lighter);
+}
+
+.vm-table--stripe .vm-table__row--stripe td {
+  background-color: inherit;
+}
+
+.vm-table__row:hover {
+  background-color: var(--vm-fill-color);
+}
+
+/* 确保 hover 覆盖到单元格（避免 td 自身背景挡住） */
+.vm-table__row:hover > td {
+  background-color: var(--vm-fill-color);
+}
+
+.vm-table__body > tr > td.is-ellipsis,
+.vm-table__cell-content.is-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vm-table__cell-content {
+  display: block;
+}
+
+.vm-table__th--fixed,
+.vm-table__td--fixed {
+  z-index: 2;
+  background-color: var(--vm-bg-color);
+  box-shadow: 1px 0 0 0 var(--vm-border-color-lighter);
+}
+
+.vm-table__th--fixed:last-child,
+.vm-table__td--fixed:last-child {
+  box-shadow: none;
+}
+
+.vm-table__header {
+  position: relative;
+  z-index: 2;
+}
+
+.vm-table__body {
+  position: relative;
+}
+
+.vm-table__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.vm-table__loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--vm-color-primary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate 1s linear infinite;
+}
+
+.vm-table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+  gap: 15px;
+  color: var(--vm-text-color-regular);
+}
+
+.vm-table__pagination button {
+  padding: 6px 12px;
+  border: var(--vm-border);
+  background-color: var(--vm-fill-color-blank);
+  border-radius: var(--vm-border-radius-base);
+  cursor: pointer;
+  color: var(--vm-text-color-regular);
+  transition: all var(--vm-transition-duration-fast);
+}
+
+.vm-table__pagination button:hover {
+  color: var(--vm-color-primary);
+  border-color: var(--vm-color-primary);
+  background-color: var(--vm-fill-color-blank);
+}
+
+.vm-table__pagination button:disabled {
+  cursor: not-allowed;
+  color: var(--vm-text-color-placeholder);
+  background-color: var(--vm-fill-color-light);
+  border-color: var(--vm-border-color-light);
+}
+
+.vm-table__expand-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: var(--vm-border);
+  background-color: var(--vm-fill-color-blank);
+  border-radius: var(--vm-border-radius-base);
+  cursor: pointer;
+  color: var(--vm-text-color-regular);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--vm-transition-duration-fast);
+}
+
+.vm-table__expand-button:hover {
+  color: var(--vm-color-primary);
+  border-color: var(--vm-color-primary);
+}
+
+.vm-table__expand-row td {
+  padding: 10px 12px;
+  background-color: var(--vm-fill-color-light);
+}
+
+.vm-table--small .vm-table th,
+.vm-table--small .vm-table td {
+  padding: 8px 10px;
+}
+
+.vm-table--large .vm-table th,
+.vm-table--large .vm-table td {
+  padding: 14px 14px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

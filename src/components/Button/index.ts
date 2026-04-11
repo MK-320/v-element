@@ -1,7 +1,8 @@
+import type { App } from 'vue'
 import Button from '@/components/Button/Button.vue'
 
-Button.install = (app: any) => {
-  app.component(Button.name, Button)
+Button.install = (app: App) => {
+  app.component(Button.name || 'VmButton', Button)
 }
 
 export default Button

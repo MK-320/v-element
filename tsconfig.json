@@ -1,4 +1,8 @@
 {
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,  // 允许导入 ts 扩展名
+    "noEmit": true,
+  },
   "files": [],
   "references": [
     {

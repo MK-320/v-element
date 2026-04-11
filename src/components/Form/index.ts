@@ -1,10 +1,11 @@
+import type { App } from 'vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
-Form.install = (app: any) => {
-  app.component(Form.name, Form)
+Form.install = (app: App) => {
+  app.component(Form.name || 'VmForm', Form)
 }
-FormItem.install = (app: any) => {
-  app.component(FormItem.name, FormItem)
+FormItem.install = (app: App) => {
+  app.component(FormItem.name || 'VmFormItem', FormItem)
 }
 export default Form
 export { FormItem }

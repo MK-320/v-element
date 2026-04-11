@@ -1,7 +1,8 @@
+import type { App } from 'vue'
 import Input from '@/components/Input/Input.vue'
 
-Input.install = (app: any) => {
-  app.component(Input.name, Input)
+Input.install = (app: App) => {
+  app.component(Input.name || 'VmInput', Input)
 }
 
 export default Input

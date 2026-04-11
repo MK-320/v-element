@@ -25,6 +25,13 @@ npm install @drgeek/v-element --save
 yarn add @drgeek/v-element --save
 
 ```
+
+## Build outputs / 构建产物说明
+
+The package ships **ES modules** (`module` / `import`) and a **UMD** bundle (`main` / `require`). The **ES build** marks Vue and several libraries as external (tree-shaking friendly; consumers install matching versions from `dependencies` / peers). The **UMD build** only externalizes **Vue**; Font Awesome, Popper, async-validator, lodash-es, and other runtime deps are **bundled into the UMD file**, so it is larger and does not mirror the ES dependency graph. Prefer ES modules for modern bundlers; use UMD only when you load Vue globally and need a single script file.
+
+本包同时提供 **ES 模块**（`import`）与 **UMD**（`require`/脚本标签场景）。**ES 构建**将 Vue 及多项库设为 external，便于按需与 tree-shaking。**UMD 构建**仅将 **Vue** 视为 external，其余如 Font Awesome、Popper、async-validator、lodash-es 等会**打入 UMD 单文件**，体积更大、与 ES 的依赖边界不一致。现代工程优先使用 ES 模块；仅在全局 `Vue` + 单文件引入时再考虑 UMD。
+
 # Quick Start 🔥开始使用
 ## Usage📖用法
 ### 🥇Full Import(全局引入)
@@ -108,4 +115,5 @@ V-Element 提供了基于 ES Module 的开箱即用的 Tree Shaking 功能。
 
 # 📑License
 [MIT](https://github.com/MK-320/v-element/blob/main/LICENSE) License © 2025-PRESENT [Drgeek](https://github.com/MK-320)
+
 

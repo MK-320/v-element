@@ -1,4 +1,5 @@
 // 所有组件的入口文件
+import type { App, Plugin } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button from '@/components/Button'
@@ -16,6 +17,7 @@ import Input from '@/components/Input'
 import Select from '@/components/Select'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
+import Table from '@/components/Table'
 import './styles/index.css'
 //图标库
 library.add(fas)
@@ -35,11 +37,12 @@ const components = [
   Select,
   Switch,
   Tooltip,
+  Table,
 ]
-const install = (app: any) => {
-  components.map((component) => {
-    //循环注册组件
-    app.use(component) //注册插件
+const install = (app: App) => {
+  components.forEach((component) => {
+    //循环注册组件（SFC 上挂的 install 与 Vue 的 Plugin 类型不完全一致，需断言）
+    app.use(component as unknown as Plugin)
   })
 }
 //按需引入组件
@@ -59,6 +62,7 @@ export {
   Select,
   Switch,
   Tooltip,
+  Table,
   createMessage,
   closeMessageAll,
   createNotification,

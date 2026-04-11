@@ -1,7 +1,8 @@
+import type { App } from 'vue'
 import Switch from '@/components/Switch/Switch.vue'
 
-Switch.install = (app: any) => {
-  app.component(Switch.name, Switch)
+Switch.install = (app: App) => {
+  app.component(Switch.name || 'VmSwitch', Switch)
 }
 
 export default Switch
